@@ -1,0 +1,49 @@
+/* Sidebar system info (Time, Uptime, Load) and the rest alerts. Tokens only. */
+.sidebar-footer .sys-info {
+  display: flex; flex-direction: column; gap: 2px; margin: 0;
+  padding: 6px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: var(--surface-2); box-shadow: inset 3px 0 0 var(--primary-500);
+}
+.sidebar-footer .sys-info.has-alert { box-shadow: inset 3px 0 0 var(--warning); }
+.is-collapsed .sidebar-footer .sys-info { display: none; }
+@media (max-width: 1100px) { .app .sidebar-footer .sys-info { display: none; } }
+
+.sys-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 3px 6px; border-radius: var(--radius-sm); }
+.sys-row dt { font-size: var(--fs-xs); font-weight: 650; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted); }
+.sys-row dd { margin: 0; font-family: var(--mono); font-size: 13px; font-weight: 650; font-variant-numeric: tabular-nums; color: var(--text); white-space: nowrap; }
+.sys-row.is-warn { background: var(--warning-bg); }
+.sys-row.is-warn dt, .sys-row.is-warn dd { color: var(--warning-text); }
+.sys-row.is-crit { background: var(--danger-bg); }
+.sys-row.is-crit dt, .sys-row.is-crit dd { color: var(--danger-text); }
+.sys-row.is-crit dt::before { content: ""; display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: var(--danger); vertical-align: 1px; animation: rest-blink 1.6s steps(2, start) infinite; }
+
+.rest-ico { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; }
+.rest-ico.is-warn { background: var(--warning-bg); color: var(--warning-text); }
+.rest-ico.is-crit { background: var(--danger-bg); color: var(--danger-text); }
+.rest-text { margin: 0; font-size: var(--fs); line-height: 1.5; color: var(--text-2); }
+
+/* Critical reminders: bottom left of the page area, above everything but dialogs. */
+.rest-crit-stack {
+  position: fixed; left: calc(var(--sidebar-w) + 16px); bottom: 16px; z-index: 990;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: min(380px, calc(100vw - 32px)); pointer-events: none;
+}
+.is-collapsed .rest-crit-stack { left: calc(var(--sidebar-w-collapsed) + 16px); }
+@media (max-width: 1100px) { .rest-crit-stack { left: calc(var(--sidebar-w-collapsed) + 16px); } }
+.rest-crit-stack > * { pointer-events: auto; }
+.rest-card {
+  width: 100%; padding: 12px 12px 14px; border-radius: var(--radius); background: var(--surface);
+  border: 1px solid var(--danger-border); box-shadow: var(--shadow-lg), inset 4px 0 0 var(--danger);
+  display: flex; flex-direction: column; gap: 8px; animation: pop-in 160ms ease;
+}
+.rest-card-head { display: flex; align-items: center; gap: 10px; }
+.rest-card-title { font-weight: 700; color: var(--danger-text); }
+.rest-pill {
+  display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 99px; cursor: pointer;
+  border: 1px solid var(--danger-border); background: var(--danger-bg); color: var(--danger-text); font-weight: 650; font-size: var(--fs-sm);
+  box-shadow: var(--shadow-md); animation: rest-glow 2.4s ease-in-out 3;
+}
+.rest-pill:hover { filter: brightness(.97); }
+
+@keyframes rest-blink { 50% { opacity: .35; } }
+@keyframes rest-glow { 50% { box-shadow: var(--shadow-md), 0 0 0 4px var(--danger-bg); } }
+@media (prefers-reduced-motion: reduce) { .sys-row.is-crit dt::before, .rest-pill { animation: none; } }

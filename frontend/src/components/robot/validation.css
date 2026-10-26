@@ -1,0 +1,22 @@
+/* Validation card (ValidationPopup.jsx): floats over every page, dragged by its header */
+.vp { position: fixed; z-index: 940; width: 360px; max-width: calc(100vw - 16px); background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--danger); border-radius: 12px; box-shadow: var(--shadow-lg); display: flex; flex-direction: column; animation: pop-in 140ms ease; }
+.vp.is-warn { border-top-color: var(--warning); }
+.vp.is-ok { border-top-color: var(--success); }
+.vp-head { display: flex; align-items: center; gap: 6px; padding: 6px 6px 6px 8px; border-bottom: 1px solid var(--border); cursor: grab; user-select: none; touch-action: none; }
+.vp-head:active { cursor: grabbing; }
+.vp-grip { color: var(--text-faint); flex-shrink: 0; }
+.vp-icon { flex-shrink: 0; color: var(--danger); }
+.vp.is-warn .vp-icon { color: var(--warning); }
+.vp.is-ok .vp-icon { color: var(--success); }
+.vp-counts { color: var(--text-muted); white-space: nowrap; }
+.vp-body { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; max-height: 40vh; overflow: auto; }
+.vp-node { display: flex; align-items: baseline; gap: 6px; min-width: 0; flex-wrap: wrap; }
+.vp-node-name { border: 0; background: none; padding: 0; font: inherit; font-weight: 700; color: var(--text); cursor: pointer; max-width: 100%; }
+.vp-node-name:hover:not(:disabled) { color: var(--primary-700); text-decoration: underline; }
+.vp-node-name:disabled { cursor: default; }
+.vp-text { font-size: var(--fs-sm); color: var(--text-2); line-height: 1.45; overflow-wrap: anywhere; }
+.vp.is-err .vp-text { color: var(--danger-text); }
+.vp-foot { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-top: 1px solid var(--border); }
+.vp-foot > :first-child { margin-right: auto; }
+.vp-foot > :last-child { margin-left: auto; }
+.vp-check { display: inline-flex; align-items: center; gap: 4px; color: var(--text-muted); cursor: pointer; white-space: nowrap; }

@@ -1,0 +1,141 @@
+/* Operator panel (Client Control). Every selector starts with .op- ; colours only from tokens. */
+.op-panel { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-xs); min-width: 0; }
+.op-panel.is-editing { border-color: var(--primary-500); box-shadow: 0 0 0 3px var(--primary-soft); }
+.op-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.op-bar-title { font-weight: 700; font-size: var(--fs-md); color: var(--text); }
+
+.op-grid { position: relative; min-width: 0; transition: height 160ms ease; }
+.op-grid.is-mobile { display: flex; flex-direction: column; gap: 10px; height: auto !important; }
+.op-cells {
+  position: absolute; inset: 0; pointer-events: none; border-radius: 10px;
+  background-image:
+    linear-gradient(to right, var(--primary-soft) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--primary-soft) 1px, transparent 1px);
+  opacity: .9;
+}
+
+/* colour of a widget: --op-c (strong), --op-c-bg (tint), --op-c-text */
+.op-c-auto, .op-c-accent { --op-c: var(--primary-600); --op-c-bg: var(--primary-soft); --op-c-text: var(--primary-700); }
+.op-c-green { --op-c: var(--success); --op-c-bg: var(--success-bg); --op-c-text: var(--success-text); }
+.op-c-red { --op-c: var(--danger); --op-c-bg: var(--danger-bg); --op-c-text: var(--danger-text); }
+.op-c-amber { --op-c: var(--warning); --op-c-bg: var(--warning-bg); --op-c-text: var(--warning-text); }
+.op-c-blue { --op-c: var(--info); --op-c-bg: var(--info-bg); --op-c-text: var(--info-text); }
+.op-c-gray { --op-c: var(--text-muted); --op-c-bg: var(--surface-3); --op-c-text: var(--text-2); }
+
+.op-w {
+  position: absolute; display: flex; min-width: 0; min-height: 0;
+  border-radius: 12px; background: var(--surface); border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, .04);
+  transition: left 140ms ease, top 140ms ease, width 140ms ease, height 140ms ease, box-shadow var(--transition);
+}
+.op-grid.is-mobile .op-w { position: relative; }
+.op-w.op-t-label { background: transparent; border-color: transparent; box-shadow: none; }
+.op-w.op-t-button { border: 0; background: transparent; box-shadow: none; }
+.op-body { flex: 1; min-width: 0; min-height: 0; display: flex; padding: 10px 12px; }
+.op-t-button > .op-body { padding: 0; }
+.is-editing .op-w { cursor: grab; outline: 1px dashed var(--border-strong); outline-offset: 2px; }
+.is-editing .op-w:hover { outline-color: var(--primary-500); }
+.is-editing .op-body { pointer-events: none; user-select: none; }
+.op-w.is-moving { z-index: 5; cursor: grabbing; box-shadow: var(--shadow-lg); outline: 2px solid var(--primary-500); transition: none; }
+.op-tools { position: absolute; top: -10px; left: 8px; display: flex; gap: 2px; padding: 2px; border-radius: 8px; background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--shadow-sm); z-index: 2; }
+.op-tools button { width: 24px; height: 24px; display: grid; place-items: center; border: 0; border-radius: 6px; background: transparent; color: var(--text-2); cursor: pointer; }
+.op-tools button:hover { background: var(--primary-soft); color: var(--primary-700); }
+.op-resize { position: absolute; right: -2px; bottom: -2px; width: 18px; height: 18px; cursor: nwse-resize; z-index: 2;
+  background: linear-gradient(135deg, transparent 50%, var(--primary-500) 50%, var(--primary-500) 60%, transparent 60%, transparent 70%, var(--primary-500) 70%, var(--primary-500) 80%, transparent 80%);
+  border-bottom-right-radius: 12px; }
+
+.op-head { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.op-title { font-size: var(--fs-sm); font-weight: 650; color: var(--text); min-width: 0; }
+.op-state { font-size: 10.5px; font-weight: 750; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; background: var(--surface-3); color: var(--text-faint); white-space: nowrap; }
+.op-state.is-on { background: var(--op-c-bg); color: var(--op-c-text); }
+.op-empty { grid-column: 1 / -1; font-size: var(--fs-xs); color: var(--text-faint); padding: 8px 2px; }
+
+/* button: fills its tile */
+.op-button {
+  position: relative; flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border-radius: 12px; border: 1px solid transparent; cursor: pointer; overflow: hidden; padding: 6px 10px;
+  color: #fff; background: var(--op-c); box-shadow: 0 8px 18px -12px var(--op-c);
+  transition: transform 100ms ease, filter var(--transition), box-shadow var(--transition);
+}
+.op-c-gray .op-button { color: var(--text); background: var(--surface-3); border-color: var(--border-strong); box-shadow: none; }
+.op-button::after { content: ""; position: absolute; inset: 0 0 50% 0; background: linear-gradient(180deg, rgba(255, 255, 255, .16), transparent); pointer-events: none; }
+.op-button:hover { filter: brightness(1.05); }
+.op-button:active { transform: translateY(1px) scale(.99); filter: brightness(.95); }
+.op-button:focus-visible { outline: none; box-shadow: var(--ring); }
+.op-button-label { font-weight: 750; font-size: 15px; letter-spacing: .02em; text-align: center; line-height: 1.15; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.op-w.is-row .op-button-label { font-size: var(--fs-sm); }
+.op-button-sub { font-size: 10.5px; font-weight: 600; opacity: .8; text-transform: uppercase; letter-spacing: .05em; }
+.op-button-led { position: absolute; top: 7px; right: 8px; width: 9px; height: 9px; border-radius: 50%; background: rgba(255, 255, 255, .35); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15); }
+.op-button-led.on { background: #fff; box-shadow: 0 0 0 3px rgba(255, 255, 255, .35), 0 0 8px #fff; }
+.op-button.is-lit { box-shadow: 0 0 0 3px var(--op-c-bg), 0 8px 18px -10px var(--op-c); }
+
+.op-toggle, .op-indicator { flex: 1; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.op-toggle .op-title { flex: 1; }
+/* live lamps switch at once: a colour transition on a value that changes several times a second keeps the page repainting (CPU) */
+.op-lamp { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; background: var(--surface-3); box-shadow: inset 0 0 0 1px var(--border-strong); }
+.op-indicator.is-on .op-lamp { background: var(--op-c); box-shadow: 0 0 0 4px var(--op-c-bg), 0 0 10px var(--op-c); }
+.op-indicator.is-on { --_glow: 1; }
+.op-w.op-t-indicator:has(.is-on) { border-color: var(--op-c); background: linear-gradient(90deg, var(--op-c-bg), var(--surface) 70%); }
+.op-indicator.is-blink .op-lamp { animation: op-blink 1s steps(2, start) infinite; }
+@keyframes op-blink { 50% { opacity: .25; } }
+
+.op-choice, .op-number, .op-group, .op-display { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; min-height: 0; }
+.op-choice .segmented { --seg-h: auto; }
+.op-c-auto .op-choice .segmented button.is-active, .op-choice .segmented button.is-active { color: var(--op-c-text); }
+.op-w.is-row .op-choice { flex-direction: row; align-items: center; }
+.op-w.is-row .op-choice .op-head { flex: 0 1 auto; max-width: 40%; }
+.op-w.is-row .op-choice > .segmented, .op-w.is-row .op-choice > .select { flex: 1; min-width: 0; }
+.op-scale { display: grid; grid-template-columns: auto auto minmax(0, 1fr); align-items: center; gap: 8px; }
+.op-inline { flex-direction: row; align-items: center; }
+.op-inline .op-title { flex: 0 1 auto; max-width: 45%; }
+.op-inline .input { flex: 1; min-width: 60px; }
+.op-num-value { margin-left: auto; font-size: var(--fs-md); color: var(--op-c-text); }
+.op-num-value small, .op-display-value small { font-size: var(--fs-xs); color: var(--text-muted); font-weight: 600; }
+.op-display { justify-content: center; gap: 2px; }
+.op-display-value { font-size: 26px; font-weight: 750; line-height: 1.1; color: var(--op-c-text); letter-spacing: -.01em; }
+.op-w.is-row .op-display { flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; }
+.op-w.is-row .op-display-value { font-size: 18px; }
+
+.op-group-grid { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; align-content: start; padding: 1px; }
+.op-gitem.cc-io-tile { min-height: 40px; padding: 6px 10px; }
+
+.op-label { flex: 1; align-self: flex-end; display: flex; align-items: baseline; gap: 12px; min-width: 0; padding: 0 2px 8px; border-bottom: 2px solid var(--op-c-bg); }
+.op-label-text { font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: .08em; color: var(--op-c-text); white-space: nowrap; }
+.op-t-label > .op-body { padding: 0 4px; }
+
+.op-empty-panel { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; gap: 4px; color: var(--text-2); }
+
+/* palette + editor */
+.op-palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+.op-pal-item { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; text-align: left; color: var(--text); transition: border-color var(--transition), background var(--transition), transform 100ms ease; }
+.op-pal-item:hover { border-color: var(--primary-500); background: var(--primary-50); transform: translateY(-1px); }
+.op-pal-icon { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--primary-soft); color: var(--primary-700); margin-bottom: 2px; }
+.op-form { display: flex; flex-direction: column; gap: 14px; }
+.op-form-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.op-form-row > .field { flex: 1 1 160px; min-width: 0; }
+.op-bind { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; align-items: end; padding: 12px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border); }
+.op-bind.is-compact { padding: 0; background: transparent; border: 0; flex: 1; min-width: 0; }
+.op-checks { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.op-safety { padding: 10px 12px; border-radius: 10px; background: var(--warning-bg); border: 1px solid var(--warning-border); }
+.op-swatches { display: flex; gap: 6px; flex-wrap: wrap; }
+.op-swatch { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; padding: 3px; background: transparent; cursor: pointer; }
+.op-swatch > span { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--op-c); }
+.op-swatch.op-c-auto > span { background: conic-gradient(var(--primary-600), var(--success), var(--warning), var(--danger), var(--primary-600)); }
+.op-swatch.is-active { border-color: var(--op-c); }
+.op-opts { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.op-opt { display: grid; grid-template-columns: 1fr 1fr auto; gap: 6px; width: 100%; }
+.op-gitems { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.op-gitem-edit { display: flex; gap: 10px; align-items: flex-end; width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-2); flex-wrap: wrap; }
+.op-gitem-edit > .field { width: 150px; }
+
+/* "PLC" tag: the PLC program uses this signal (info = reads it, warning = drives it) */
+.op-plc-tag { flex-shrink: 0; font-size: 9px; line-height: 1; font-weight: 800; padding: 2px 4px; border-radius: 4px; color: var(--on-primary); background: var(--info); cursor: help; }
+.op-plc-tag.is-driven { background: var(--warning); }
+.op-plc-tag.is-corner { position: absolute; top: 4px; right: 6px; z-index: 2; }
+
+/* Heading sizes (widget setting "Text size") */
+.op-label.is-md .op-label-text { font-size: 16px; }
+.op-label.is-lg .op-label-text { font-size: 22px; letter-spacing: .05em; }
+.op-label.is-xl .op-label-text { font-size: 30px; letter-spacing: .03em; line-height: 1.1; }
+.op-label.is-normal .op-label-text { text-transform: none; letter-spacing: 0; }
+.op-label.is-lg, .op-label.is-xl { align-items: center; align-self: center; padding-bottom: 6px; }

@@ -1,0 +1,13 @@
+# debounce -- a clean copy of a bouncing / noisy input.
+#   input (in), output (out: Q or M), on_time / off_time (time, default 50ms)
+#   output goes 1 after the input has been 1 for on_time, 0 after it has been 0 for off_time.
+block: debounce
+description: "Input debounce with separate on and off times"
+ports:
+  input:    {kind: in}
+  output:   {kind: out}
+  on_time:  {kind: time, default: 50ms}
+  off_time: {kind: time, default: 50ms}
+rungs:
+  - {set: output,   when: "ON_FOR(input, on_time)"}
+  - {reset: output, when: "OFF_FOR(input, off_time)"}

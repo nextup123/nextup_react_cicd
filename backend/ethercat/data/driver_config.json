@@ -1,0 +1,128 @@
+[
+    {
+        "name": "Numerator of electronic gear ratio",
+        "index": "2005h",
+        "subindex": "08h",
+        "dataType": "int32",
+        "defaultValue": 8388608
+    },
+    {
+        "name": "Denominator of electronic gear ratio",
+        "index": "2005h",
+        "subindex": "0Ah",
+        "dataType": "int32",
+        "defaultValue": 10000
+    },
+    {
+        "name": "DI1 function selection",
+        "index": "2003h",
+        "subindex": "03h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI1 logic selection",
+        "index": "2003h",
+        "subindex": "04h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI2 function selection",
+        "index": "2003h",
+        "subindex": "05h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI2 logic selection",
+        "index": "2003h",
+        "subindex": "06h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI3 function selection",
+        "index": "2003h",
+        "subindex": "07h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI3 logic selection",
+        "index": "2003h",
+        "subindex": "08h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI4 function selection",
+        "index": "2003h",
+        "subindex": "09h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI4 logic selection",
+        "index": "2003h",
+        "subindex": "0Ah",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DI5 function selection",
+        "index": "2003h",
+        "subindex": "0Bh",
+        "dataType": "int16",
+        "defaultValue": 34
+    },
+    {
+        "name": "DI5 logic selection",
+        "index": "2003h",
+        "subindex": "0Ch",
+        "dataType": "int16",
+        "defaultValue": 1
+    },
+    {
+        "name": "DO1 function selection",
+        "index": "2004h",
+        "subindex": "01h",
+        "dataType": "int16",
+        "defaultValue": 31
+    },
+    {
+        "name": "DO1 logic selection",
+        "index": "2004h",
+        "subindex": "02h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DO2 function selection",
+        "index": "2004h",
+        "subindex": "03h",
+        "dataType": "int16",
+        "defaultValue": 9
+    },
+    {
+        "name": "DO2 logic selection",
+        "index": "2004h",
+        "subindex": "04h",
+        "dataType": "int16",
+        "defaultValue": 0
+    },
+    {
+        "name": "DO3 function selection",
+        "index": "2004h",
+        "subindex": "05h",
+        "dataType": "int16",
+        "defaultValue": 31
+    },
+    {
+        "name": "DO3 logic selection",
+        "index": "2004h",
+        "subindex": "06h",
+        "dataType": "int16",
+        "defaultValue": 0
+    }
+]

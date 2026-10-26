@@ -1,0 +1,27 @@
+/* FloatingWindow: draggable, resizable window over the page (z below dialogs and menus). */
+.fwin { position: fixed; display: flex; flex-direction: column; min-width: 0; background: var(--surface); border: 1px solid var(--border-strong, var(--border)); border-radius: 12px; box-shadow: var(--shadow-lg); animation: pop-in 140ms ease; overflow: hidden; }
+.fwin.is-max { border-radius: 10px; }
+.fwin-head { display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 8px; border-bottom: 1px solid var(--border); background: var(--surface-2); cursor: grab; user-select: none; touch-action: none; flex-shrink: 0; }
+.fwin-head:active { cursor: grabbing; }
+.fwin.is-max .fwin-head { cursor: default; }
+.fwin-grip { color: var(--text-faint); flex-shrink: 0; }
+.fwin-icon { color: var(--primary-600, var(--primary)); flex-shrink: 0; }
+.fwin-titles { display: flex; align-items: baseline; gap: 8px; min-width: 0; flex: 1 1 auto; overflow: hidden; }
+.fwin-title { font-weight: 650; white-space: nowrap; }
+.fwin-sub { font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.fwin-actions { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+.fwin-body { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.fwin-edge { position: absolute; z-index: 2; touch-action: none; }
+.fwin-n, .fwin-s { left: 10px; right: 10px; height: 7px; cursor: ns-resize; }
+.fwin-n { top: -3px; } .fwin-s { bottom: -3px; }
+.fwin-e, .fwin-w { top: 10px; bottom: 10px; width: 7px; cursor: ew-resize; }
+.fwin-e { right: -3px; } .fwin-w { left: -3px; }
+.fwin-ne, .fwin-nw, .fwin-se, .fwin-sw { width: 14px; height: 14px; }
+.fwin-ne { top: -3px; right: -3px; cursor: nesw-resize; }
+.fwin-sw { bottom: -3px; left: -3px; cursor: nesw-resize; }
+.fwin-nw { top: -3px; left: -3px; cursor: nwse-resize; }
+.fwin-se { bottom: -3px; right: -3px; cursor: nwse-resize; }
+.fwin-se::after { content: ""; position: absolute; right: 5px; bottom: 5px; width: 8px; height: 8px; border-right: 2px solid var(--text-faint); border-bottom: 2px solid var(--text-faint); border-radius: 0 0 3px 0; opacity: .7; }
+html[data-input="touch"] .fwin-n, html[data-input="touch"] .fwin-s { height: 16px; }
+html[data-input="touch"] .fwin-e, html[data-input="touch"] .fwin-w { width: 16px; }
+html[data-input="touch"] .fwin-ne, html[data-input="touch"] .fwin-nw, html[data-input="touch"] .fwin-se, html[data-input="touch"] .fwin-sw { width: 26px; height: 26px; }

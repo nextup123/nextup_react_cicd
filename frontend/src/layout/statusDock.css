@@ -1,0 +1,179 @@
+/* Top-bar status chips (joints matrix additions, persistent motion chip,
+   program chip) and the status dock with their panels. Theme tokens only. */
+
+/* ───── joints chip: isolation row, no-data cells ───── */
+.rs-matrix { gap: 1.5px; }
+.rs-row { height: 4.6px; }
+.rs-cell.is-warn { background: var(--warning); }
+.rs-cell.is-none { background: var(--border-strong); }
+.sd-dot.is-warn { background: var(--warning); }
+.sd-dot.is-none { background: var(--border-strong); }
+.sd-num td { font-size: 10.5px; color: var(--text-2); }
+
+/* ───── motion chip (always shown) ───── */
+.motion-chip { padding: 0 5px 0 0; gap: 4px; min-width: 140px; }
+.motion-chip-main { display: flex; align-items: center; gap: 8px; align-self: stretch; flex: 1 1 auto; min-width: 0; padding: 0 4px 0 10px; border: 0; background: none; color: inherit; cursor: pointer; text-align: left; border-radius: 9px; font: inherit; }
+.motion-chip-main:focus-visible { outline: none; box-shadow: var(--ring); }
+.motion-chip.is-idle, .motion-chip.is-idle-bad { border-color: var(--border); background: var(--surface); color: var(--text-2); box-shadow: var(--shadow-xs); }
+.motion-chip.is-idle .motion-chip-title, .motion-chip.is-idle-bad .motion-chip-title { color: var(--text); }
+.motion-chip.is-idle svg { color: var(--text-faint); }
+.motion-chip.is-idle-bad svg, .motion-chip.is-idle-bad .motion-chip-sub { color: var(--danger-text); }
+.motion-chip.is-idle:hover, .motion-chip.is-idle-bad:hover { border-color: var(--border-strong); }
+.motion-chip.is-open { box-shadow: 0 0 0 2px var(--primary-200); }
+/* ready: nothing runs, a motion would be accepted */
+.motion-chip.is-idle svg { color: var(--success); }
+/* inactive: a motion would be refused (not armed, JOG, emergency…) — light red border */
+.motion-chip.is-inactive { border-color: var(--danger-border); background: var(--surface); color: var(--text-2); box-shadow: var(--shadow-xs); }
+.motion-chip.is-inactive .motion-chip-title { color: var(--text); }
+.motion-chip.is-inactive svg, .motion-chip.is-inactive .motion-chip-sub { color: var(--danger-text); }
+.motion-chip.is-inactive:hover { border-color: var(--danger); }
+
+/* ───── program chip ───── */
+.prog-chip { display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 10px 0 8px; border-radius: 9px; border: 1px solid var(--border); border-left-width: 3px; background: var(--surface); box-shadow: var(--shadow-xs); color: var(--text-2); cursor: pointer; min-width: 0; max-width: 220px; flex-shrink: 0; font: inherit; text-align: left; }
+.prog-chip:hover { border-color: var(--border-strong); }
+.prog-chip:focus-visible { outline: none; box-shadow: var(--ring); }
+.prog-chip.is-open { box-shadow: 0 0 0 2px var(--primary-200); }
+.prog-chip-icon { position: relative; display: grid; place-items: center; color: var(--text-muted); flex-shrink: 0; }
+.prog-chip-lamp { position: absolute; right: -3px; bottom: -3px; width: 8px; height: 8px; border-radius: 50%; background: var(--text-faint); border: 1.5px solid var(--surface); }
+.prog-chip-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.15; }
+.prog-chip-value { display: flex; align-items: baseline; gap: 6px; font-size: var(--fs-sm); font-weight: 700; color: var(--text); white-space: nowrap; }
+.prog-chip-cycles { font-size: 10.5px; font-weight: 650; color: var(--text-muted); }
+.prog-chip-sub { font-size: var(--fs-xs); color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 170px; }
+.prog-chip.is-success { border-left-color: var(--success); }
+.prog-chip.is-success .prog-chip-lamp { background: var(--success); }
+.prog-chip.is-warning { border-left-color: var(--warning); }
+.prog-chip.is-warning .prog-chip-lamp { background: var(--warning); }
+.prog-chip.is-warning .prog-chip-value { color: var(--warning-text); }
+.prog-chip.is-info { border-left-color: var(--info); }
+.prog-chip.is-info .prog-chip-lamp { background: var(--info); }
+.prog-chip.is-danger { border-left-color: var(--danger); }
+.prog-chip.is-danger .prog-chip-lamp { background: var(--danger); }
+.prog-chip.is-danger .prog-chip-value { color: var(--danger-text); }
+.prog-chip.is-danger .prog-chip-sub { color: var(--danger-text); }
+.prog-chip.is-neutral .prog-chip-lamp { background: var(--text-muted); }
+/* stopped with the process off / no runner: light red, like an inactive motion */
+.prog-chip.is-off { border-color: var(--danger-border); border-left-color: var(--danger-border); }
+.prog-chip.is-off .prog-chip-lamp { background: var(--danger-border); }
+.prog-chip.is-off .prog-chip-sub { color: var(--danger-text); }
+.prog-chip.is-off:hover { border-color: var(--danger); }
+
+@media (max-width: 1480px) { .prog-chip-cycles { display: none; } .prog-chip { max-width: 180px; } }
+@media (max-width: 1240px) { .prog-chip-sub { display: none; } }
+
+/* ───── dock: the panels float over the page, anywhere in the window. The
+   layer lets clicks through; each panel sits at its own left/top (set in
+   StatusDock.jsx, widths match DOCK_WIDTH in store/statusDock.js). Above the
+   floating IO chips (700), below menus, drawers and dialogs (900+). ───── */
+.status-dock { position: fixed; inset: 0; z-index: 720; pointer-events: none; }
+.dk-panel {
+  position: absolute;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: calc(100vw - 16px);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.dk-panel.tone-success { border-top-color: var(--success); }
+.dk-panel.tone-warning { border-top-color: var(--warning); }
+.dk-panel.tone-danger { border-top-color: var(--danger); }
+.dk-panel.tone-info { border-top-color: var(--info); }
+.dk-panel.tone-inactive { border-top-color: var(--danger-border); }
+.dk-panel.is-dragging { opacity: .94; box-shadow: var(--shadow-lg), 0 0 0 2px var(--primary-200); }
+.dk-panel.is-dragging, .dk-panel.is-dragging * { cursor: grabbing !important; user-select: none; }
+
+.dk-head { display: flex; align-items: center; gap: 7px; padding: 6px 6px 6px 10px; border-bottom: 1px solid var(--border); background: var(--surface-2); user-select: none; flex-shrink: 0; cursor: grab; touch-action: none; }
+.dk-panel.is-folded .dk-head { border-bottom: 0; }
+.dk-head strong { font-size: var(--fs-sm); color: var(--text); }
+.dk-grip { display: flex; align-items: center; gap: 6px; margin-left: -4px; padding: 2px 4px; border-radius: 6px; flex-shrink: 0; }
+.dk-grip > svg:first-child { color: var(--text-faint); }
+.dk-grip:hover { background: var(--surface-3); }
+.dk-grip:focus-visible { outline: none; box-shadow: var(--ring); }
+.dk-head-icon { color: var(--text-muted); flex-shrink: 0; }
+.dk-summary { flex: 1 1 auto; min-width: 0; font-size: var(--fs-xs); color: var(--text-muted); }
+.dk-btn { width: 24px; height: 24px; display: grid; place-items: center; flex-shrink: 0; border: 0; border-radius: 6px; background: none; color: var(--text-muted); cursor: pointer; }
+.dk-btn:hover { background: var(--surface-3); color: var(--text); }
+.dk-body { padding: 10px; overflow: auto; min-height: 0; display: flex; flex-direction: column; gap: 9px; font-size: var(--fs-sm); }
+.dk-body .sd-facts { margin: 0; padding-top: 0; border-top: 0; }
+.dk-block { display: flex; flex-direction: column; gap: 6px; }
+.dk-block .sd-facts { padding-top: 8px; border-top: 1px solid var(--border); margin-top: 2px; }
+.dk-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.dk-row strong { flex: 1 1 auto; min-width: 0; }
+.dk-section { display: flex; flex-direction: column; gap: 4px; padding-top: 8px; border-top: 1px solid var(--border); }
+.dk-h { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); }
+.dk-empty { margin: 0; }
+.dk-msg { font-size: var(--fs-xs); color: var(--text-2); background: var(--surface-2); border-radius: var(--radius-sm); padding: 5px 7px; word-break: break-word; }
+.dk-error { font-size: var(--fs-xs); font-weight: 600; color: var(--danger-text); background: var(--danger-bg); border: 1px solid var(--danger-border); border-radius: var(--radius-sm); padding: 5px 7px; }
+.dk-file { font-size: 10.5px; color: var(--text-muted); }
+.dk-joints { margin-top: 2px; }
+
+.dk-badge { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 1px 6px; border-radius: 5px; white-space: nowrap; background: var(--surface-3); color: var(--text-muted); }
+.dk-badge.is-ok { background: var(--success-bg); color: var(--success-text); }
+.dk-badge.is-bad { background: var(--danger-bg); color: var(--danger-text); }
+.dk-badge.is-info { background: var(--info-bg); color: var(--info-text); }
+
+/* motion readiness (the motion server's start checks) */
+.dk-ready { display: flex; flex-direction: column; gap: 5px; padding: 7px 8px; border-radius: var(--radius); border: 1px solid var(--success-border); background: var(--success-bg); }
+.dk-ready.is-bad { border-color: var(--danger-border); background: var(--danger-bg); }
+.dk-ready-title { font-size: var(--fs-xs); font-weight: 700; color: var(--success-text); }
+.dk-ready.is-bad .dk-ready-title { color: var(--danger-text); }
+.dk-checks { display: flex; flex-wrap: wrap; gap: 3px; }
+.dk-check { font-size: 10.5px; font-weight: 600; padding: 1px 6px 1px 5px; border-radius: 5px; background: var(--surface); color: var(--text-2); white-space: nowrap; }
+.dk-check::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 4px; vertical-align: 1px; background: var(--success); }
+.dk-check.is-bad { color: var(--danger-text); font-weight: 700; }
+.dk-check.is-bad::before { background: var(--danger); }
+
+/* lists */
+.dk-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.dk-list li { display: flex; align-items: center; gap: 7px; padding: 3px 0; font-size: 12px; border-bottom: 1px solid var(--border); min-width: 0; }
+.dk-list li:last-child { border-bottom: 0; }
+.dk-list-meta { font-size: 10.5px; color: var(--text-muted); white-space: nowrap; }
+.dk-list-time { font-size: 10.5px; color: var(--text-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dk-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; background: var(--text-faint); }
+.dk-dot.is-ok { background: var(--success); }
+.dk-dot.is-bad { background: var(--danger); }
+.dk-dot.is-run { background: var(--warning); }
+.dk-dot.is-muted { background: var(--border-strong); }
+.dk-olist { margin: 0; padding-left: 18px; font-size: 11px; color: var(--text-2); display: flex; flex-direction: column; gap: 1px; }
+.dk-crumbs { font-size: 11px; color: var(--text-muted); line-height: 1.5; word-break: break-word; }
+.dk-term { font-size: 11px; padding: 5px 7px; border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text-2); word-break: break-word; }
+
+/* program guide + failure */
+.dk-guide { display: flex; flex-direction: column; gap: 2px; padding: 7px 9px; border-radius: var(--radius); border-left: 3px solid var(--border-strong); background: var(--surface-2); font-size: var(--fs-xs); color: var(--text-2); }
+.dk-guide strong { font-size: var(--fs-sm); color: var(--text); }
+.dk-guide.tone-success { border-left-color: var(--success); }
+.dk-guide.tone-warning { border-left-color: var(--warning); background: var(--warning-bg); }
+.dk-guide.tone-danger { border-left-color: var(--danger); background: var(--danger-bg); }
+.dk-guide.tone-info { border-left-color: var(--info); }
+.dk-fail { display: flex; flex-direction: column; gap: 4px; padding: 8px 9px; border: 1px solid var(--danger-border); border-left: 4px solid var(--danger); border-radius: var(--radius); background: var(--danger-bg); }
+.dk-fail.is-soft { border-left-width: 1px; }
+.dk-fail .sd-facts { border-top: 0; padding-top: 0; }
+.dk-fail-node { font-size: 13px; word-break: break-word; color: var(--text); }
+.dk-fail-error { font-size: var(--fs-xs); font-weight: 600; color: var(--danger-text); word-break: break-word; }
+.dk-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+
+/* ───── top bar room: the safety buttons never shrink or get pushed out ───── */
+.topbar > .btn, .topbar-actions { flex-shrink: 0; }
+@media (max-width: 1500px) {
+  .topbar { gap: 10px; }
+  .conn-pill { font-size: 0; gap: 0; padding: 0 9px; } /* the dot alone; the tooltip says the rest */
+}
+@media (max-width: 1360px) {
+  .motion-chip { min-width: 112px; max-width: 160px; }
+  .prog-chip { max-width: 150px; }
+  .prog-chip-sub { display: none; }
+}
+@media (max-width: 1200px) {
+  .rs-flags { display: none; }
+  .motion-chip-sub { display: none; }
+}
+/* long motion / program names shrink before anything else does */
+.topbar .motion-chip { flex-shrink: 1; }
+.topbar .prog-chip { flex-shrink: 1; min-width: 112px; }
+.prog-chip-text, .prog-chip-value { overflow: hidden; text-overflow: ellipsis; }
+/* the page title gives up its room first (the sidebar already shows the page) */
+.topbar > .topbar-page { flex-shrink: 40; }

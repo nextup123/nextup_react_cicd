@@ -1,0 +1,17 @@
+# part_counter -- counts rising edges into a retained register, with a preset and a done bit.
+#   count_input (in)      each 0->1 counts one
+#   reset (in, optional)  rising edge -> 0
+#   count (register)      the counter (retained)
+#   preset (number, default 1000000)   done = count >= preset (a number or a register)
+#   done (out, optional)
+block: part_counter
+description: "Retained part counter with preset and done bit"
+ports:
+  count_input: {kind: in}
+  reset:       {kind: in, optional: true}
+  count:       {kind: register}
+  preset:      {kind: number, default: 1000000}
+  done:        {kind: out, optional: true}
+retain: [count]
+rungs:
+  - {count: count, up: "RISE(count_input)", reset: "RISE(reset)", preset: preset, done: done}

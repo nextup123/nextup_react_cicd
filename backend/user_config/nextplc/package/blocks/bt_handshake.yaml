@@ -1,0 +1,23 @@
+# bt_handshake -- the PLC asks the behaviour tree for something and waits for its answer.
+#   start (in)            rising edge: raise the request (if none is pending)
+#   request (out: M)      1 = the BT should act (tree: WaitBit request=1 ... PulseBit done)
+#   done (in: M)          pulsed by the BT when finished (PulseBit)
+#   fault (out)           latched: no answer within timeout
+#   reset (in, optional)  rising edge clears the fault
+#   timeout (time, default 30s)
+block: bt_handshake
+description: "Request / done handshake with the behaviour tree, with timeout"
+ports:
+  start:   {kind: in}
+  request: {kind: out}
+  done:    {kind: in}
+  fault:   {kind: out}
+  reset:   {kind: in, optional: true}
+  timeout: {kind: time, default: 30s}
+rungs:
+  - {set: request,   when: "RISE(start) AND NOT request AND NOT fault"}
+  - {set: fault,     when: "ON_FOR(request, timeout)"}
+  - {reset: request, when: "RISE(done) OR fault"}
+  - {reset: fault,   when: "RISE(reset)"}
+alarms:
+  - {bit: fault, text: "Behaviour tree did not answer the request in time", level: error, toast: true}

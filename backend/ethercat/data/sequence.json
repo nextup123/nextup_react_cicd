@@ -1,0 +1,40 @@
+[
+    {
+        "index": "200Dh",
+        "subindex": "01h",
+        "name": "Software reset",
+        "dataType": "Uint16",
+        "value": 1,
+        "delay":1000
+    },
+    {
+        "index": "2002h",
+        "subindex": "02h",
+        "name": "Homing 1",
+        "dataType": "Uint16",
+        "value": 0,
+        "delay":1000
+    },
+    {
+        "index": "200Dh",
+        "subindex": "01h",
+        "name": "Software reset",
+        "dataType": "Uint16",
+        "value": 1,
+        "delay":1000
+    },
+    {
+        "index": "2002h",
+        "subindex": "02h",
+        "name": "Homing 1",
+        "dataType": "Uint16",
+        "value": 1
+    },
+    {
+        "index": "2005h",
+        "subindex": "1Fh",
+        "name": "Homing 2",
+        "dataType": "Uint16",
+        "value": 6
+    }
+]

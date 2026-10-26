@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+  Example of the recommended tree shape (see docs/RUNNER.md, "Writing good trees").
+    * started / stopped by the runner services: /control_logic_bt/start {cycles: N}, stop, finish_cycle, abort
+    * PreflightCheck: every point is in points.yaml and the I/O is alive BEFORE anything moves
+    * speeds in ONE place (SetVar), used as {fast} / {slow}
+    * the motion details of a station live in programs.yaml (RunProgram), edited from the web
+    * Recovery: when the work fails, the robot is brought to a known state, then the cycle fails
+  Check it without running: ros2 run control_logic_bt control_logic_bt_validate --points example_program_cell.xml
+-->
+<root main_tree_to_execute="cell">
+  <BehaviorTree ID="cell">
+    <Start>
+      <Sequence name="cycle">
+        <PreflightCheck name="preflight" required_points="home,PrepickpointCNC1,PickpointCNC1,AfterpickpointCNC1"
+                        require_digital_inputs="false"/>
+        <SetVar name="fast_speed" key="fast" value="1.0"/>
+        <SetVar name="slow_speed" key="slow" value="0.1"/>
+        <SubTree ID="go_safe_start" __shared_blackboard="true"/>
+        <Recovery name="work_or_recover">
+          <SubTree ID="pick_cnc1" __shared_blackboard="true"/>
+          <SubTree ID="recover_to_safe" __shared_blackboard="true"/>
+        </Recovery>
+      </Sequence>
+    </Start>
+  </BehaviorTree>
+
+  <BehaviorTree ID="go_safe_start">
+    <Fallback name="safe_start">
+      <IsAtPose name="already_home" target_name="home"/>
+      <PilzPointsPlanner name="to_home" pose_goal="home" planner_id="PTP" speed="{fast}" acceleration="2.0"/>
+    </Fallback>
+  </BehaviorTree>
+
+  <BehaviorTree ID="pick_cnc1">
+    <Sequence name="pick">
+      <RunProgram name="pick_program" program="cnc1_pick" repeat="1"/>
+      <PilzPointsPlanner name="back_home" pose_goal="home" planner_id="PTP" speed="{fast}" acceleration="2.0"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="recover_to_safe">
+    <Sequence name="recover">
+      <PopupMsg name="tell_operator" msg="Cycle failed - robot returns home" type="failure" timeout="10"/>
+      <PilzPointsPlanner name="recover_home" pose_goal="home" planner_id="PTP" speed="{slow}" acceleration="0.5"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

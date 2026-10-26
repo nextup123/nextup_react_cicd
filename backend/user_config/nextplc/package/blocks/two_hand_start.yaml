@@ -1,0 +1,25 @@
+# two_hand_start -- both buttons must be pressed within `window` of each other and held.
+#
+#   left, right (in)   the two push buttons
+#   enable (in, default TRUE)   extra condition (e.g. S.AUTO)
+#   output (out)       1 while both are held (and were pressed together)
+#   window (time, default 500ms)
+#   rule: if one button is held alone longer than the window, the start is blocked until BOTH are
+#   released (anti-tie-down, as in EN 574 type III logic -- a functional implementation, not a
+#   certified safety device).
+block: two_hand_start
+description: "Two-hand start with anti-tie-down window"
+ports:
+  left:   {kind: in}
+  right:  {kind: in}
+  enable: {kind: in, default: "TRUE"}
+  output: {kind: out}
+  window: {kind: time, default: 500ms}
+locals:
+  blocked: M
+rungs:
+  # one hand alone for longer than the window -> blocked
+  - {set: blocked,   when: "ON_FOR(left AND NOT right, window) OR ON_FOR(right AND NOT left, window)"}
+  # both released -> free again
+  - {reset: blocked, when: "NOT left AND NOT right"}
+  - {out: output,    when: "left AND right AND NOT blocked AND enable"}

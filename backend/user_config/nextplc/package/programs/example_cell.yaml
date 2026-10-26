@@ -1,0 +1,61 @@
+# nextplc example program -- every rung type once. Copy to
+# /home/nextup/user_config_files/plc/program.yaml and change the addresses to your cell.
+# Check without the robot:  ros2 run nextplc nextplc_check example_cell.yaml
+# Reload while running:     ros2 service call /nextplc/load_program nextplc/srv/LoadProgram "{path: ''}"
+program: example_cell
+scan_ms: 10
+
+# names are optional: every rung below could also use the raw address
+io:
+  I:
+    part_present:  gpio1.di1
+    clamp_closed:  gpio1.di2
+    start_button:  gpio1.di7
+    reset_button:  gpio1.di8
+  Q:
+    clamp:         gpio1.do1
+    green_lamp:    gpio1.do6
+    red_lamp:      gpio1.do7
+    weld_on:       joint6.do1
+  M:
+    at_p1:         M10      # set by the BT (SetBit) when the robot is at P1
+    req_pick:      M11      # set by the PLC: the BT waits on it (WaitBit)
+    pick_done:     M13      # pulsed by the BT (PulseBit) after the pick
+    cycle_done:    M14
+    alarm_clamp:   M30
+  R:
+    part_count:    R0
+    batch_size:    R2
+
+retain: [part_count, batch_size]
+
+safe_state:
+  default: 0
+  exempt: [red_lamp]          # keeps blinking in an emergency
+
+rungs:
+  # interlock: the clamp closes only with a part, the robot at P1 and the robot in AUTO
+  - {out: clamp,      when: "ON_FOR(part_present, 300ms) AND at_p1 AND S.AUTO"}
+  # fault: clamp commanded 2 s, feedback sensor not coming -> latched alarm, reset by button
+  - {set:   alarm_clamp, when: "ON_FOR(clamp AND NOT clamp_closed, 2s)"}
+  - {reset: alarm_clamp, when: "RISE(reset_button)"}
+  # lamps
+  - {out: green_lamp, when: "S.AUTO AND NOT alarm_clamp AND NOT S.EMERGENCY"}
+  - {out: red_lamp,   when: "(alarm_clamp OR S.EMERGENCY) AND S.BLINK_1HZ"}
+  # production count: one per pick, batch done when the preset is reached
+  - {count: part_count, up: "RISE(pick_done)", reset: "RISE(start_button)", preset: batch_size, done: cycle_done}
+  - {move: batch_size, value: 10, when: "S.FIRST_SCAN AND batch_size == 0"}
+
+sequences:
+  - name: pick_cycle
+    start: "S.AUTO AND clamp AND clamp_closed"          # clamp really closed -> the robot may pick
+    abort: "S.EMERGENCY OR NOT S.AUTO OR alarm_clamp"
+    steps:
+      - {name: ask_robot,  do: [req_pick],           next: "pick_done"}             # BT: WaitBit req_pick, pick, PulseBit pick_done
+      - {name: weld,       do: [req_pick, weld_on],  next: "ON_FOR(weld_on, 1500ms)"}
+      - {name: release,    do: [],                   next: "NOT clamp_closed", timeout: 2s, on_timeout: alarm_clamp}
+
+alarms:
+  - {bit: alarm_clamp, text: "Clamp did not close / open in time", level: error, toast: true}
+  - {bit: cycle_done,  text: "Batch finished",                       level: info,  toast: true}
+  - {bit: S.IO_FAULT,  text: "PLC output not applied / inputs stale", level: error, toast: false}

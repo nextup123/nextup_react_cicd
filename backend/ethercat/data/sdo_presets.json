@@ -1,0 +1,1922 @@
+[
+  {
+    "index": "1000h",
+    "subindex": "00h",
+    "name": "Device type",
+    "data_type": "uint32"
+  },
+  {
+    "index": "1008h",
+    "subindex": "00h",
+    "name": "Manufacturer device name",
+    "data_type": "String"
+  },
+  {
+    "index": "1009h",
+    "subindex": "00h",
+    "name": "Manufacturer hardware version",
+    "data_type": "String"
+  },
+  {
+    "index": "100Ah",
+    "subindex": "00h",
+    "name": "Manufacturer software version",
+    "data_type": "String"
+  },
+  {
+    "index": "1018h",
+    "subindex": "00h",
+    "name": "Highest sub-index supported",
+    "data_type": "uint8"
+  },
+  {
+    "index": "1018h",
+    "subindex": "01h",
+    "name": "Vendor ID",
+    "data_type": "uint32"
+  },
+  {
+    "index": "1018h",
+    "subindex": "02h",
+    "name": "Product code",
+    "data_type": "uint32"
+  },
+  {
+    "index": "1018h",
+    "subindex": "03h",
+    "name": "Revision number",
+    "data_type": "uint32"
+  },
+  {
+    "index": "1018h",
+    "subindex": "04h",
+    "name": "Serial No.",
+    "data_type": "uint32"
+  },
+  {
+    "index": "1C12h",
+    "subindex": "00h",
+    "name": "Number of assigned RPDOs",
+    "data_type": "uint8"
+  },
+  {
+    "index": "1C12h",
+    "subindex": "01h",
+    "name": "Index of RPDO assignment",
+    "data_type": "uint16"
+  },
+  {
+    "index": "1C13h",
+    "subindex": "00h",
+    "name": "Number of assigned TPDOs",
+    "data_type": "uint8"
+  },
+  {
+    "index": "1C13h",
+    "subindex": "01h",
+    "name": "Index of TPDO assignment",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2000h",
+    "subindex": "01h",
+    "name": "Motor code",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2000h",
+    "subindex": "05h",
+    "name": "Encoder version",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2000h",
+    "subindex": "06h",
+    "name": "Serial-type motor code",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2001h",
+    "subindex": "01h",
+    "name": "MCU software version",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2001h",
+    "subindex": "02h",
+    "name": "FPGA software version",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2001h",
+    "subindex": "0Bh",
+    "name": "Servo drive code",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "01h",
+    "name": "Control mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "02h",
+    "name": "Absolute encoder system selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "03h",
+    "name": "Direction of rotation",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "06h",
+    "name": "Stop mode at S-ON OFF",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "07h",
+    "name": "Stop mode at No. 2 fault",
+    "data_type": "int16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "08h",
+    "name": "Stop mode at overtravel",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "09h",
+    "name": "Stop mode at No. 1 fault",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "0Ah",
+    "name": "Delay from brake output ON to command received",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "0Bh",
+    "name": "Delay from brake output OFF to motor de-energized",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "0Ch",
+    "name": "Motor speed threshold at brake output OFF",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "0Dh",
+    "name": "Delay from S-OFF to brake output OFF",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "16h",
+    "name": "Minimum permissible resistance of regenerative resistor",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "17h",
+    "name": "Power of built-in regenerative resistor",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "18h",
+    "name": "Resistance of built-in regenerative resistor",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "19h",
+    "name": "Resistor heat dissipation coefficient",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "1Ah",
+    "name": "Regenerative resistor setting",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "1Bh",
+    "name": "Power of external regenerative resistor",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "1Ch",
+    "name": "Resistance of external regenerative resistor",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "20h",
+    "name": "System parameter initialization",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2002h",
+    "subindex": "21h",
+    "name": "Default keypad display",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "03h",
+    "name": "DI1 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "04h",
+    "name": "DI1 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "05h",
+    "name": "DI2 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "06h",
+    "name": "DI2 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "07h",
+    "name": "DI3 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "08h",
+    "name": "DI3 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "09h",
+    "name": "DI4 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "0Ah",
+    "name": "DI4 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "0Bh",
+    "name": "DI5 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "0Ch",
+    "name": "DI5 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "3Dh",
+    "name": "DI1 filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "3Eh",
+    "name": "DI2 filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "3Fh",
+    "name": "DI3 filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "40h",
+    "name": "DI4 filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2003h",
+    "subindex": "41h",
+    "name": "DI5 filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "01h",
+    "name": "DO1 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "02h",
+    "name": "DO1 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "03h",
+    "name": "DO2 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "04h",
+    "name": "DO2 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "05h",
+    "name": "DO3 function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "06h",
+    "name": "DO3 logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2004h",
+    "subindex": "18h",
+    "name": "EtherCAT forced DO offline output logic",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "05h",
+    "name": "First-order low-pass filter time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "06h",
+    "name": "Moving average filter time constant 1",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "07h",
+    "name": "Moving average filter time constant 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "08h",
+    "name": "Numerator of electronic gear ratio",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "0Ah",
+    "name": "Denominator of electronic gear ratio",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "14h",
+    "name": "Speed feedforward control",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "1Fh",
+    "name": "Local homing",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "24h",
+    "name": "Homing time limit",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "25h",
+    "name": "Local home offset",
+    "data_type": "int32"
+  },
+  {
+    "index": "2005h",
+    "subindex": "2Fh",
+    "name": "Position offset in absolute position linear mode (low 32 bits)",
+    "data_type": "int32"
+  },
+  {
+    "index": "2005h",
+    "subindex": "31h",
+    "name": "Position offset in absolute position linear mode (high 32 bits)",
+    "data_type": "int32"
+  },
+  {
+    "index": "2005h",
+    "subindex": "33h",
+    "name": "Mechanical gear ratio (numerator) in absolute position rotation mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "34h",
+    "name": "Mechanical gear ratio (denominator) in absolute position rotation mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2005h",
+    "subindex": "35h",
+    "name": "Pulses per load revolution (low 32 bits)",
+    "data_type": "uint32"
+  },
+  {
+    "index": "2005h",
+    "subindex": "37h",
+    "name": "Pulses per load revolution (high 32 bits)",
+    "data_type": "uint32"
+  },
+  {
+    "index": "2006h",
+    "subindex": "04h",
+    "name": "Speed reference",
+    "data_type": "int16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "06h",
+    "name": "Acceleration ramp time constant of speed reference",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "07h",
+    "name": "Deceleration ramp time of speed reference",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "09h",
+    "name": "Forward speed limit",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "0Ah",
+    "name": "Reverse speed limit",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "0Bh",
+    "name": "Quick stop deceleration coefficient",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "0Ch",
+    "name": "Torque feedforward control",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "0Dh",
+    "name": "Acceleration/Deceleration ramp time constant of jog speed reference",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2006h",
+    "subindex": "0Eh",
+    "name": "Speed feedforward filter time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "04h",
+    "name": "Torque reference value set through keypad",
+    "data_type": "int16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "06h",
+    "name": "Torque reference filter time constant 1",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "07h",
+    "name": "Torque reference filter time constant 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "0Ah",
+    "name": "Positive internal torque limit",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "0Bh",
+    "name": "Negative internal torque limit",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "10h",
+    "name": "Emergency stop torque",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "14h",
+    "name": "Positive internal speed limit in torque control",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "15h",
+    "name": "Negative internal speed limit in torque control",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "16h",
+    "name": "Base value for torque reached",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "17h",
+    "name": "Threshold for valid torque reach",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "18h",
+    "name": "Threshold for invalid torque reach",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "19h",
+    "name": "Field-weakening depth",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "1Ah",
+    "name": "Max. permissible demagnetizing current",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "1Bh",
+    "name": "Field-weakening selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "1Ch",
+    "name": "Field-weakening gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "25h",
+    "name": "Time constant of low-pass filter 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "26h",
+    "name": "Torque reference filter selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2007h",
+    "subindex": "27h",
+    "name": "Biquad filter attenuation ratio",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "01h",
+    "name": "Speed loop gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "02h",
+    "name": "Speed loop integral time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "03h",
+    "name": "Position loop gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "04h",
+    "name": "2nd speed loop gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "05h",
+    "name": "2nd speed loop integral time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "06h",
+    "name": "2nd position loop gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "09h",
+    "name": "2nd gain mode setting",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "0Ah",
+    "name": "Gain switchover condition",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "0Bh",
+    "name": "Gain switchover delay",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "0Ch",
+    "name": "Gain switchover level",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "0Dh",
+    "name": "Gain switchover dead time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "0Eh",
+    "name": "Position gain switchover time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "10h",
+    "name": "Load moment of inertia ratio",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "12h",
+    "name": "Zero phase delay",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "13h",
+    "name": "Speed feedforward filter time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "14h",
+    "name": "Speed feedforward gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "15h",
+    "name": "Torque feedforward filter time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "16h",
+    "name": "Torque feedforward gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "17h",
+    "name": "Speed feedback filtering option",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "18h",
+    "name": "Cutoff frequency of speed feedback low-pass filter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2008h",
+    "subindex": "19h",
+    "name": "Pseudo derivative feedback and feedforward control coefficient",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "01h",
+    "name": "Gain auto-tuning mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "02h",
+    "name": "Stiffness level of 1st gain set",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "03h",
+    "name": "Adaptive notch mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "04h",
+    "name": "Online inertia auto-tuning mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "06h",
+    "name": "Offline inertia auto-tuning mode",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "07h",
+    "name": "Maximum speed in inertia auto-tuning",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "08h",
+    "name": "Time constant for accelerating to maximum speed",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "09h",
+    "name": "Waiting time after an individual inertia auto-tuning",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "0Ah",
+    "name": "Number of motor revolutions per inertia auto-tuning",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "0Ch",
+    "name": "Vibration threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "0Dh",
+    "name": "Frequency of the 1st notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "0Eh",
+    "name": "Width level of the 1st notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "0Fh",
+    "name": "Depth level of the 1st notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "10h",
+    "name": "Frequency of the 2nd notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "11h",
+    "name": "Width level of the 2nd notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "12h",
+    "name": "Depth level of the 2nd notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "13h",
+    "name": "Frequency of the 3rd notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "14h",
+    "name": "Width level of the 3rd notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "15h",
+    "name": "Depth level of the 3rd notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "16h",
+    "name": "Frequency of the 4th notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "17h",
+    "name": "Width level of the 4th notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "18h",
+    "name": "Depth level of the 4th notch",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "19h",
+    "name": "Auto-tuned resonance frequency",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "21h",
+    "name": "Gravity compensation",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "22h",
+    "name": "Forward friction compensation",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "23h",
+    "name": "Reverse friction compensation",
+    "data_type": "int16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "24h",
+    "name": "Friction compensation speed threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "25h",
+    "name": "Friction compensation speed selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "27h",
+    "name": "Low-frequency resonance suppression frequency",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "28h",
+    "name": "Low-frequency resonance suppression level",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "2Dh",
+    "name": "Frequency of low-frequency resonance suppression 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "2Eh",
+    "name": "Response of low-frequency resonance suppression 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "30h",
+    "name": "Width of low-frequency resonance suppression 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "32h",
+    "name": "Frequency of low-frequency resonance suppression 3",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "33h",
+    "name": "Response of low-frequency resonance suppression 3",
+    "data_type": "uint16"
+  },
+  {
+    "index": "2009h",
+    "subindex": "35h",
+    "name": "Width of low-frequency resonance suppression 3",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "01h",
+    "name": "Power input phase loss protection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "02h",
+    "name": "Absolute position limit",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "05h",
+    "name": "Motor overload protection gain",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "09h",
+    "name": "Overspeed threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "0Bh",
+    "name": "Threshold of excessive position following deviation",
+    "data_type": "uint32"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "0Dh",
+    "name": "Runaway protection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "13h",
+    "name": "Power module over-temperature threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "14h",
+    "name": "Filter time constant of touch probe 1",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "15h",
+    "name": "Filter time constant of touch probe 2",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "16h",
+    "name": "STO function display",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "1Ah",
+    "name": "Filter time constant of speed feedback display value",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "1Bh",
+    "name": "Motor overload warning/fault selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "1Ch",
+    "name": "Speed DO filter time constant",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "21h",
+    "name": "Motor stall over-temperature protection time window",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "22h",
+    "name": "Motor stall over-temperature protection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "25h",
+    "name": "Absolute encoder multi-turn overflow fault selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "29h",
+    "name": "Overtravel compensation selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "32h",
+    "name": "Regenerative resistor over-temperature threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "33h",
+    "name": "Encoder communication fault tolerance threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "34h",
+    "name": "Phase loss detection filter times",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "35h",
+    "name": "Encoder temperature protection threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "38h",
+    "name": "Runaway current threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "39h",
+    "name": "Reset delay",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "3Ah",
+    "name": "Runaway speed threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "3Bh",
+    "name": "Runaway speed filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "3Ch",
+    "name": "Runaway protection detection time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "49h",
+    "name": "Maximum time of ramp-to-stop",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "4Ah",
+    "name": "STO disconnection filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "4Bh",
+    "name": "STO fault tolerance filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Ah",
+    "subindex": "4Ch",
+    "name": "STO servo off filter time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "01h",
+    "name": "Motor speed actual value",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "02h",
+    "name": "Speed reference",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "03h",
+    "name": "internal torque reference",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "04h",
+    "name": "Monitored DI status",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "06h",
+    "name": "Monitored DO status",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "08h",
+    "name": "Absolute position counter",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "0Ah",
+    "name": "Mechanical angle",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "0Bh",
+    "name": "Electrical angle",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "0Dh",
+    "name": "Average load rate",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "10h",
+    "name": "Position following deviation (encoder unit)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "12h",
+    "name": "Feedback pulse counter",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "14h",
+    "name": "Total power-on time",
+    "data_type": "uint32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "19h",
+    "name": "RMS value of phase current",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "1Bh",
+    "name": "Bus voltage",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "1Ch",
+    "name": "Power module temperature",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "22h",
+    "name": "Fault log",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "23h",
+    "name": "Fault code of selected fault",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "24h",
+    "name": "Time stamp of selected fault",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "26h",
+    "name": "Motor speed upon selected fault",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "27h",
+    "name": "Motor phase U current upon selected fault",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "28h",
+    "name": "Motor phase V current upon selected fault",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "29h",
+    "name": "Bus voltage upon selected fault",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "2Ah",
+    "name": "DI status upon selected fault",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "2Bh",
+    "name": "DO status upon selected fault",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "36h",
+    "name": "Position deviation counter (reference unit)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "38h",
+    "name": "Motor speed actual value (0.1 RPM)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "3Ah",
+    "name": "Control circuit bus voltage",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "3Bh",
+    "name": "Mechanical absolute position (low 32 bits)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "3Dh",
+    "name": "Mechanical absolute position (high 32 bits)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "40h",
+    "name": "Notrdy state",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "43h",
+    "name": "Encoder temperature",
+    "data_type": "int16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "44h",
+    "name": "Load rate of regenerative resistor",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "47h",
+    "name": "Number of revolutions of absolute encoder",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "48h",
+    "name": "Single-turn position feedback of absolute encoder",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "4Eh",
+    "name": "Absolute position of absolute encoder (low 32 bits)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "50h",
+    "name": "Absolute position of absolute encoder (high 32 bits)",
+    "data_type": "int32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "52h",
+    "name": "Single-turn position of rotating load (low 32 bits)",
+    "data_type": "uint32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "54h",
+    "name": "Single-turn position of rotating load (high 32 bits)",
+    "data_type": "uint32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "56h",
+    "name": "Single-turn position of rotating load (reference unit)",
+    "data_type": "uint32"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "5Bh",
+    "name": "Group number of abnormal parameter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Bh",
+    "subindex": "5Ch",
+    "name": "Offset of abnormal parameter within group",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "01h",
+    "name": "Software reset",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "02h",
+    "name": "Fault reset",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "03h",
+    "name": "Offline inertia auto-tuning selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "06h",
+    "name": "Emergency stop",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "12h",
+    "name": "Forced DI/DO selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "13h",
+    "name": "Forced DI setting",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "14h",
+    "name": "Forced DO setting",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Dh",
+    "subindex": "15h",
+    "name": "Absolute encoder reset selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "01h",
+    "name": "Node address",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "02h",
+    "name": "Update parameter values written through communication to EEPROM",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "15h",
+    "name": "EtherCAT slave name",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "16h",
+    "name": "EtherCAT slave alias",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "17h",
+    "name": "Number of SYNC interrupts allowed by EtherCAT",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "19h",
+    "name": "SYNC loss counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "1Ah",
+    "name": "Port 0 invalid frame counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "1Bh",
+    "name": "Port 1 invalid frame counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "1Ch",
+    "name": "Port 0/1 transfer error counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "1Dh",
+    "name": "Process unit and PDI error counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "1Eh",
+    "name": "Port 0/1 lost counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "20h",
+    "name": "SYNC mode setting",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "21h",
+    "name": "SYNC error window",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "22h",
+    "name": "EtherCAT network state and link state",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "23h",
+    "name": "Excessive position reference increment counter",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "25h",
+    "name": "EtherCAT enhanced link selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "26h",
+    "name": "EtherCAT XML reset selection",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "51h",
+    "name": "Serial port baud rate",
+    "data_type": "uint16"
+  },
+  {
+    "index": "200Eh",
+    "subindex": "52h",
+    "name": "Modbus data format",
+    "data_type": "uint16"
+  },
+  {
+    "index": "203Fh",
+    "subindex": "00h",
+    "name": "Manufacturer fault code",
+    "data_type": "uint32"
+  },
+  {
+    "index": "603Fh",
+    "subindex": "00h",
+    "name": "Error code",
+    "data_type": "uint16"
+  },
+  {
+    "index": "6040h",
+    "subindex": "00h",
+    "name": "Control word",
+    "data_type": "uint16"
+  },
+  {
+    "index": "6041h",
+    "subindex": "00h",
+    "name": "Status word",
+    "data_type": "uint16"
+  },
+  {
+    "index": "605Ah",
+    "subindex": "00h",
+    "name": "Quick stop option code",
+    "data_type": "int16"
+  },
+  {
+    "index": "605Ch",
+    "subindex": "00h",
+    "name": "Disable operation option code",
+    "data_type": "int16"
+  },
+  {
+    "index": "605Dh",
+    "subindex": "00h",
+    "name": "Stop option code",
+    "data_type": "int16"
+  },
+  {
+    "index": "605Eh",
+    "subindex": "00h",
+    "name": "Fault reaction option code",
+    "data_type": "int16"
+  },
+  {
+    "index": "6060h",
+    "subindex": "00h",
+    "name": "Modes of operation",
+    "data_type": "int8"
+  },
+  {
+    "index": "6061h",
+    "subindex": "00h",
+    "name": "Modes of operation display",
+    "data_type": "int8"
+  },
+  {
+    "index": "6062h",
+    "subindex": "00h",
+    "name": "Position demand value",
+    "data_type": "int32"
+  },
+  {
+    "index": "6063h",
+    "subindex": "00h",
+    "name": "Position actual value (encoder unit)",
+    "data_type": "int32"
+  },
+  {
+    "index": "6064h",
+    "subindex": "00h",
+    "name": "Position actual value (reference unit)",
+    "data_type": "int32"
+  },
+  {
+    "index": "6065h",
+    "subindex": "00h",
+    "name": "Following error window",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6066h",
+    "subindex": "00h",
+    "name": "Following error time out",
+    "data_type": "uint16"
+  },
+  {
+    "index": "6067h",
+    "subindex": "00h",
+    "name": "Position window",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6068h",
+    "subindex": "00h",
+    "name": "Position window time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "606Ch",
+    "subindex": "00h",
+    "name": "Velocity actual value",
+    "data_type": "int32"
+  },
+  {
+    "index": "606Dh",
+    "subindex": "00h",
+    "name": "Velocity window",
+    "data_type": "uint16"
+  },
+  {
+    "index": "606Eh",
+    "subindex": "00h",
+    "name": "Velocity window time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "606Fh",
+    "subindex": "00h",
+    "name": "Velocity threshold",
+    "data_type": "uint16"
+  },
+  {
+    "index": "6070h",
+    "subindex": "00h",
+    "name": "Velocity threshold time",
+    "data_type": "uint16"
+  },
+  {
+    "index": "6071h",
+    "subindex": "00h",
+    "name": "Target torque",
+    "data_type": "int16"
+  },
+  {
+    "index": "6072h",
+    "subindex": "00h",
+    "name": "Max torque",
+    "data_type": "uint16"
+  },
+  {
+    "index": "6074h",
+    "subindex": "00h",
+    "name": "Torque demand value",
+    "data_type": "int16"
+  },
+  {
+    "index": "6077h",
+    "subindex": "00h",
+    "name": "Torque actual value",
+    "data_type": "int16"
+  },
+  {
+    "index": "607Ah",
+    "subindex": "00h",
+    "name": "Target position",
+    "data_type": "int32"
+  },
+  {
+    "index": "607Ch",
+    "subindex": "00h",
+    "name": "Home offset",
+    "data_type": "int32"
+  },
+  {
+    "index": "607Dh",
+    "subindex": "01h",
+    "name": "Min position limit",
+    "data_type": "int32"
+  },
+  {
+    "index": "607Dh",
+    "subindex": "02h",
+    "name": "Max position limit",
+    "data_type": "int32"
+  },
+  {
+    "index": "607Eh",
+    "subindex": "00h",
+    "name": "Polarity",
+    "data_type": "uint8"
+  },
+  {
+    "index": "607Fh",
+    "subindex": "00h",
+    "name": "Max profile velocity",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6081h",
+    "subindex": "00h",
+    "name": "Profile velocity",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6083h",
+    "subindex": "00h",
+    "name": "Profile acceleration",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6084h",
+    "subindex": "00h",
+    "name": "Profile deceleration",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6085h",
+    "subindex": "00h",
+    "name": "Quick stop deceleration",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6087h",
+    "subindex": "00h",
+    "name": "Torque slope",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6091h",
+    "subindex": "01h",
+    "name": "Motor revolutions",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6091h",
+    "subindex": "02h",
+    "name": "Shaft revolutions",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6098h",
+    "subindex": "00h",
+    "name": "Homing method",
+    "data_type": "int8"
+  },
+  {
+    "index": "6099h",
+    "subindex": "01h",
+    "name": "Speed during search for switch",
+    "data_type": "uint32"
+  },
+  {
+    "index": "6099h",
+    "subindex": "02h",
+    "name": "Speed during search for zero",
+    "data_type": "int32"
+  },
+  {
+    "index": "609Ah",
+    "subindex": "00h",
+    "name": "Homing acceleration",
+    "data_type": "uint32"
+  },
+  {
+    "index": "60B0h",
+    "subindex": "00h",
+    "name": "Position offset",
+    "data_type": "int32"
+  },
+  {
+    "index": "60B1h",
+    "subindex": "00h",
+    "name": "Velocity offset",
+    "data_type": "int32"
+  },
+  {
+    "index": "60B2h",
+    "subindex": "00h",
+    "name": "Torque offset",
+    "data_type": "int16"
+  },
+  {
+    "index": "60B8h",
+    "subindex": "00h",
+    "name": "Touch probe function",
+    "data_type": "uint16"
+  },
+  {
+    "index": "60B9h",
+    "subindex": "00h",
+    "name": "Touch probe status",
+    "data_type": "uint16"
+  },
+  {
+    "index": "60BAh",
+    "subindex": "00h",
+    "name": "Touch probe 1 positive edge",
+    "data_type": "int32"
+  },
+  {
+    "index": "60BBh",
+    "subindex": "00h",
+    "name": "Touch probe 1 negative edge",
+    "data_type": "int32"
+  },
+  {
+    "index": "60BCh",
+    "subindex": "00h",
+    "name": "Touch probe 2 positive edge",
+    "data_type": "int32"
+  },
+  {
+    "index": "60BDh",
+    "subindex": "00h",
+    "name": "Touch probe 2 negative edge",
+    "data_type": "int32"
+  },
+  {
+    "index": "60E0h",
+    "subindex": "00h",
+    "name": "Positive torque limit value",
+    "data_type": "uint16"
+  },
+  {
+    "index": "60E1h",
+    "subindex": "00h",
+    "name": "Negative torque limit value",
+    "data_type": "uint16"
+  },
+  {
+    "index": "60E6h",
+    "subindex": "00h",
+    "name": "Actual position calculation method",
+    "data_type": "uint8"
+  },
+  {
+    "index": "60F4h",
+    "subindex": "00h",
+    "name": "Following error actual value",
+    "data_type": "int32"
+  },
+  {
+    "index": "60FCh",
+    "subindex": "00h",
+    "name": "Position demand value (encoder unit)",
+    "data_type": "int32"
+  },
+  {
+    "index": "60FDh",
+    "subindex": "00h",
+    "name": "Digital input",
+    "data_type": "int32"
+  },
+  {
+    "index": "60FEh",
+    "subindex": "01h",
+    "name": "Physical output",
+    "data_type": "uint32"
+  },
+  {
+    "index": "60FEh",
+    "subindex": "02h",
+    "name": "Bit mask",
+    "data_type": "uint32"
+  },
+  {
+    "index": "60FFh",
+    "subindex": "00h",
+    "name": "Target velocity",
+    "data_type": "int32"
+  },
+  {
+    "index": "6502h",
+    "subindex": "00h",
+    "name": "Supported drive modes",
+    "data_type": "uint32"
+  }
+]

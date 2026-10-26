@@ -1,0 +1,8 @@
+# Digital signals watched by nextup_drive_state_broadcaster (edit by hand or with ~/set_io_watch).
+signals:
+  - name: conveyor_ready
+    device: joint1
+    input: di1
+    log_rising: true
+    log_falling: true
+    debounce_ms: 20

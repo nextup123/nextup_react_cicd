@@ -1,0 +1,30 @@
+# motor_starter -- start / stop with a contactor feedback check.
+#
+#   start (in)            rising edge starts (push button)
+#   stop_ok (in)          1 = may run (NC stop button chain, guard ok); 0 stops at once
+#   run_cmd (out)         the contactor output
+#   running_fb (in, default run_cmd)   feedback (auxiliary contact); not connected = no check
+#   fault (out)           latched: feedback missing for fb_time, or feedback without command
+#   reset (in, optional)  rising edge clears the fault
+#   fb_time (time, default 1s)
+block: motor_starter
+description: "Motor start/stop with contactor feedback supervision"
+ports:
+  start:      {kind: in}
+  stop_ok:    {kind: in}
+  run_cmd:    {kind: out}
+  running_fb: {kind: in, default: run_cmd}
+  fault:      {kind: out}
+  reset:      {kind: in, optional: true}
+  fb_time:    {kind: time, default: 1s}
+locals:
+  run: M
+rungs:
+  - {set: run,     when: "RISE(start) AND stop_ok AND NOT fault"}
+  - {reset: run,   when: "NOT stop_ok OR fault"}
+  # feedback must follow the command within fb_time, both ways
+  - {set: fault,   when: "ON_FOR(run AND NOT running_fb, fb_time) OR ON_FOR(NOT run AND running_fb, fb_time)"}
+  - {reset: fault, when: "RISE(reset)"}
+  - {out: run_cmd, when: "run"}
+alarms:
+  - {bit: fault, text: "Motor contactor feedback fault", level: error, toast: true}

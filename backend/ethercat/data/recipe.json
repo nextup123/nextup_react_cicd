@@ -1,0 +1,362 @@
+{
+  "recipes": [
+    {
+      "id": "recipe-1778650284105-aa827a0c786e7",
+      "name": "Homing Recipe",
+      "blocks": [
+        {
+          "index": "2002h",
+          "subindex": "02h",
+          "name": "Absolute encoder system selection",
+          "dataType": "Uint16",
+          "value": 0,
+          "delay": 1000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        },
+        {
+          "index": "200Dh",
+          "subindex": "01h",
+          "name": "Software reset",
+          "dataType": "Uint16",
+          "value": 1,
+          "delay": 5000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        },
+        {
+          "index": "2002h",
+          "subindex": "02h",
+          "name": "Absolute encoder system selection",
+          "dataType": "Uint16",
+          "value": 1,
+          "delay": 1000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        },
+        {
+          "index": "200Dh",
+          "subindex": "01h",
+          "name": "Software reset",
+          "dataType": "Uint16",
+          "value": 1,
+          "delay": 5000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        },
+        {
+          "index": "2005h",
+          "subindex": "1Fh",
+          "name": "Local homing",
+          "dataType": "Uint16",
+          "value": 6,
+          "delay": 1000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        },
+        {
+          "type": "get",
+          "index": "6064h",
+          "subindex": "00h",
+          "name": "Position actual value (reference unit)",
+          "dataType": "int32",
+          "value": 0,
+          "delay": 1000,
+          "expectedValue": "-1-5",
+          "storeAs": ""
+        }
+      ],
+      "description": "This is the recipe to Set Homing of the drivers",
+      "createdAt": "2026-06-01T16:52:16.287Z",
+      "modifiedAt": "2026-07-04T05:02:19.385Z",
+      "modifiedAt": "2026-06-30T05:30:01.975Z",
+      "purpose": "This Recipe has been created to set drivers to the homing status. This recipe eliminates the manual process of setting drivers to home",
+      "notes": "1. Make sure Everything node is not running\n2. Ethercat has been started\n3. Ethercat_manager's node is running",
+      "author": "Shashikant",
+      "tags": [
+        "HOMING",
+        "CALIBRATION"
+      ],
+      "status": "ready",
+      "executionCount": 22,
+      "lastExecutedAt": "2026-07-04T05:02:19.385Z",
+      "executionCount": 18,
+      "lastExecutedAt": "2026-06-30T05:30:01.975Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1780373751730-b159af4583501",
+      "name": "Factory Reset",
+      "description": "Factory Reset",
+      "blocks": [
+        {
+          "index": "2002h",
+          "subindex": "20h",
+          "name": "System parameter initialization",
+          "value": 1,
+          "delay": 1000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "createdAt": "2026-06-02T04:15:51.730Z",
+      "modifiedAt": "2026-06-02T05:51:53.352Z",
+      "purpose": "",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "executionCount": 0,
+      "lastExecutedAt": null,
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1780373875524-a512cf7c5b472",
+      "name": "sync cycle window",
+      "description": "",
+      "blocks": [
+        {
+          "index": "200Eh",
+          "subindex": "21h",
+          "name": "SYNC error window",
+          "value": 10000,
+          "delay": 1000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "createdAt": "2026-06-02T04:17:55.524Z",
+      "modifiedAt": "2026-06-02T04:18:27.290Z",
+      "purpose": "",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "executionCount": 0,
+      "lastExecutedAt": null,
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1780373976551-ee20ec03f072d8",
+      "name": "power[on-off]",
+      "description": "",
+      "blocks": [
+        {
+          "index": "200Dh",
+          "subindex": "01h",
+          "name": "Software reset",
+          "value": 1,
+          "delay": 4000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "createdAt": "2026-06-02T04:19:36.551Z",
+      "modifiedAt": "2026-07-04T08:39:26.889Z",
+      "modifiedAt": "2026-07-08T04:44:39.657Z",
+      "purpose": "",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "executionCount": 3,
+      "lastExecutedAt": "2026-07-04T08:39:26.889Z",
+      "executionCount": 4,
+      "lastExecutedAt": "2026-07-08T04:44:39.657Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1780379515192-9ab642fb8f8c3",
+      "name": "Software Reset",
+      "description": "This Recipe restarts the driver like switching power on and of",
+      "purpose": "This Recipe restarts the driver like switching power on and of",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "blocks": [
+        {
+          "index": "200Dh",
+          "subindex": "01h",
+          "name": "Software reset",
+          "dataType": "uint16",
+          "value": 1,
+          "delay": 1000,
+          "type": "set",
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "executionCount": 3,
+      "lastExecutedAt": "2026-06-30T05:17:20.252Z",
+      "createdAt": "2026-06-02T05:51:55.192Z",
+      "modifiedAt": "2026-06-30T05:17:20.252Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1783311434839-c114qergz",
+      "name": "Recipe 6",
+      "description": "",
+      "purpose": "",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "blocks": [
+        {
+          "type": "get",
+          "index": "200Bh",
+          "subindex": "01h",
+          "name": "Motor speed actual value",
+          "dataType": "int16",
+          "value": 0,
+          "delay": 1000,
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "executionCount": 5,
+      "lastExecutedAt": "2026-07-06T04:19:45.076Z",
+      "createdAt": "2026-07-06T04:17:14.839Z",
+      "modifiedAt": "2026-07-06T04:19:45.076Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1783055987494-lpyj2iwcs",
+      "name": "over speed auto",
+      "description": "",
+      "purpose": "",
+      "notes": "",
+      "author": "dhiren",
+      "tags": [],
+      "status": "ready",
+      "blocks": [
+        {
+          "type": "set",
+          "index": "200Ah",
+          "subindex": "09h",
+          "name": "Overspeed threshold",
+          "dataType": "uint16",
+          "value": 6000,
+          "delay": 1000,
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "executionCount": 35,
+      "lastExecutedAt": "2026-07-04T09:04:59.838Z",
+      "createdAt": "2026-07-03T05:19:47.494Z",
+      "modifiedAt": "2026-07-04T09:04:59.838Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1783063153650-zdxokjt8x",
+      "name": "over speed jog",
+      "description": "",
+      "purpose": "",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "blocks": [
+        {
+          "type": "set",
+          "index": "200Ah",
+          "subindex": "09h",
+          "name": "Overspeed threshold",
+          "dataType": "uint16",
+          "value": 500,
+          "delay": 1000,
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "executionCount": 16,
+      "lastExecutedAt": "2026-07-04T09:21:39.950Z",
+      "createdAt": "2026-07-03T07:19:13.650Z",
+      "modifiedAt": "2026-07-04T09:21:39.950Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    },
+    {
+      "id": "recipe-1783070667176-f6o12dteq",
+      "name": "Motor overload",
+      "description": "",
+      "purpose": "",
+      "notes": "",
+      "author": "",
+      "tags": [],
+      "status": "ready",
+      "blocks": [
+        {
+          "type": "set",
+          "index": "200Ah",
+          "subindex": "05h",
+          "name": "Motor overload protection gain",
+          "dataType": "uint16",
+          "value": 50,
+          "delay": 1000,
+          "expectedValue": "",
+          "storeAs": ""
+        }
+      ],
+      "executionCount": 1,
+      "lastExecutedAt": "2026-07-03T09:25:10.161Z",
+      "createdAt": "2026-07-03T09:24:27.176Z",
+      "modifiedAt": "2026-07-03T09:25:10.161Z",
+      "verification": {
+        "enabled": false,
+        "delayMs": 300,
+        "strictMode": false,
+        "retryOnMismatch": 0
+      }
+    }
+  ]
+}

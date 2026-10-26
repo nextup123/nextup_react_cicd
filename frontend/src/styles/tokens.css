@@ -1,0 +1,188 @@
+/* Design tokens. Modes (light / gray / dark) set html[data-mode], accents set
+   html[data-accent] (see lib/theme.js); the accent scales are in themes.css. */
+:root {
+  /* Accent: --primary-* come from themes.css (one scale per accent × mode). */
+  --accent: #0ea5c6;
+  --on-primary: #ffffff;
+
+  /* Neutrals (light mode) */
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f9fafb;
+  --surface-3: #f2f4f7;
+  --border: #e4e7ec;
+  --border-strong: #d0d5dd;
+  --text: #101828;
+  --text-2: #344054;
+  --text-muted: #667085;
+  --text-faint: #98a2b3;
+  --raised: var(--surface); /* selected segment, lifted above a track */
+  --topbar-bg: linear-gradient(180deg, #fff 0%, #fbfbfe 100%);
+  --glass: rgba(255, 255, 255, 0.92);
+  --scrollbar: #d0d5dd;
+  --scrollbar-hover: #98a2b3;
+  --backdrop: rgba(16, 24, 40, 0.45);
+  --skeleton-hi: #eceff3;
+  --scene-bg: linear-gradient(180deg, #f4f5fb, #e9ebf3);
+  --scene3d-bg: #e6e9f0;
+  --scene3d-floor: #f1f3f8;
+  --scene3d-grid: #c2c7d2;
+  color-scheme: light;
+
+  /* Status. Hues and meaning are fixed in every theme: only the tints and
+     the text shade adapt to the mode so they stay readable. */
+  --success: #16a34a;
+  --success-bg: #ecfdf3;
+  --success-border: #abefc6;
+  --success-text: #067647;
+  --success-strong: #054f31;
+  --warning: #d97706;
+  --warning-bg: #fffaeb;
+  --warning-border: #fedf89;
+  --warning-text: #b54708;
+  --warning-strong: #7a2e0e;
+  --danger: #dc2626;
+  --danger-600: #c81e1e;
+  --danger-bg: #fef3f2;
+  --danger-border: #fecdca;
+  --danger-text: #b42318;
+  --danger-strong: #7a271a;
+  --danger-hover-bg: #fee4e2;
+  --info: #2563eb;
+  --info-bg: #eff6ff;
+  --info-border: #bfdbfe;
+  --info-text: #1d4ed8;
+  --info-strong: #1e3a8a;
+  /* Status colour used as text or icon on the page surface. */
+  --success-fg: var(--success);
+  --warning-fg: var(--warning);
+  --danger-fg: var(--danger);
+  --info-fg: var(--info);
+
+  /* Shape */
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08), 0 2px 4px rgba(16, 24, 40, 0.04);
+  --shadow-lg: 0 12px 32px rgba(16, 24, 40, 0.14), 0 4px 8px rgba(16, 24, 40, 0.06);
+
+  /* Type */
+  --font: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --fs-xs: 11px;
+  --fs-sm: 12.5px;
+  --fs: 14px;
+  --fs-md: 15px;
+  --fs-lg: 18px;
+  --fs-xl: 22px;
+
+  /* Layout */
+  --sidebar-w: 232px;
+  --sidebar-w-collapsed: 68px;
+  --topbar-h: 60px;
+  --gap: 16px;
+  --transition: 140ms ease;
+}
+
+/* Gray: low glare, no pure white (bright shop floors, long shifts). */
+:root[data-mode="gray"] {
+  --bg: #cfd3d9;
+  --surface: #e4e7eb;
+  --surface-2: #dde1e6;
+  --surface-3: #d3d8de;
+  --border: #c2c8d0;
+  --border-strong: #a9b0ba;
+  --text: #0f1520;
+  --text-2: #2a3342;
+  --text-muted: #4b5565;
+  --text-faint: #6b7483;
+  --topbar-bg: linear-gradient(180deg, #e6e9ed 0%, #e0e3e8 100%);
+  --glass: rgba(228, 231, 235, 0.94);
+  --scrollbar: #a9b0ba;
+  --scrollbar-hover: #7d8693;
+  --skeleton-hi: #e9ecef;
+  --scene-bg: linear-gradient(180deg, #dadde4, #c9cdd6);
+  --scene3d-bg: #c4c9d1;
+  --scene3d-floor: #d3d7de;
+  --scene3d-grid: #9da4b0;
+  --success-bg: #dcefe3;
+  --success-border: #93d3ad;
+  --success-text: #05603a;
+  --warning-bg: #f3ead2;
+  --warning-border: #e9c46a;
+  --warning-text: #93370d;
+  --danger-bg: #f3dfdd;
+  --danger-border: #f0aaa3;
+  --danger-text: #a01f13;
+  --danger-hover-bg: #efcfcb;
+  --info-bg: #dde7f6;
+  --info-border: #a9c4f0;
+  --info-text: #1a44b8;
+  --success-fg: #13823c;
+  --warning-fg: #b45309;
+  --danger-fg: #c81e1e;
+  --info-fg: #1d4ed8;
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.08);
+  --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.12), 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.12), 0 2px 4px rgba(16, 24, 40, 0.06);
+  --shadow-lg: 0 12px 32px rgba(16, 24, 40, 0.2), 0 4px 8px rgba(16, 24, 40, 0.08);
+}
+
+:root[data-mode="dark"] {
+  --bg: #0e1014;
+  --surface: #171a21;
+  --surface-2: #1b1f27;
+  --surface-3: #232833;
+  --border: #2a303c;
+  --border-strong: #3a4250;
+  --text: #e9ecf2;
+  --text-2: #c6ccd7;
+  --text-muted: #939cad;
+  --text-faint: #6c7586;
+  --raised: #343b4a;
+  --topbar-bg: linear-gradient(180deg, #191c24 0%, #171a21 100%);
+  --glass: rgba(27, 31, 39, 0.94);
+  --scrollbar: #3a4250;
+  --scrollbar-hover: #566070;
+  --backdrop: rgba(0, 0, 0, 0.6);
+  --skeleton-hi: #2c323e;
+  --scene-bg: linear-gradient(180deg, #1d2028, #14161b);
+  --scene3d-bg: #1a1c22;
+  --scene3d-floor: #22252d;
+  --scene3d-grid: #2c2f38;
+  color-scheme: dark;
+  --success-bg: #0f2a1d;
+  --success-border: #1f5c3b;
+  --success-text: #6fe0a0;
+  --success-strong: #a6f0c6;
+  --warning-bg: #2d2109;
+  --warning-border: #6b4a12;
+  --warning-text: #fbbf4b;
+  --warning-strong: #fdd88a;
+  --danger-bg: #331516;
+  --danger-border: #7a2729;
+  --danger-text: #fca29c;
+  --danger-strong: #fdc7c2;
+  --danger-hover-bg: #45191b;
+  --info-bg: #111e38;
+  --info-border: #284682;
+  --info-text: #9cbefd;
+  --info-strong: #c3d7fe;
+  --success-fg: #3ccb72;
+  --warning-fg: #f5a524;
+  --danger-fg: #f87068;
+  --info-fg: #6b9cf7;
+  --logo-plate: rgba(255, 255, 255, 0.92);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 14px 36px rgba(0, 0, 0, 0.6), 0 4px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Smooth hand-over while a new theme is applied (lib/theme.js sets this for
+   a moment only, so normal hover transitions are untouched). */
+:root.theme-switching *, :root.theme-switching *::before, :root.theme-switching *::after {
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, fill 200ms ease, stroke 200ms ease !important;
+}

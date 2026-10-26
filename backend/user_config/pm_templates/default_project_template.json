@@ -1,0 +1,23 @@
+{
+  "directories": [
+    "planning_data",
+    "control_data",
+    "plc_data"
+  ],
+  "files": {
+    "planning_data": {
+      "points.yaml": "defaults/points.yaml",
+      "points_undo.yaml": "defaults/points_undo.yaml",
+      "programs.yaml": "defaults/programs.yaml"
+    },
+    "control_data": {
+      "do_di.xml": "defaults/do_di.xml",
+      "do_di_undo.xml": "defaults/do_di_undo.xml",
+      "template.xml": "defaults/template.xml",
+      "main_tree.xml": "defaults/main_tree.xml"
+    },
+    "root": {
+      "logs.json": "defaults/logs.json"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+# blink_cycle.yaml -- joint1.do1 is 1 at rest. When joint1.di1 becomes 1: joint1.do3 on 2 s, off 3 s,
+# on 2 s, off 2 s, then on; joint1.do1 is 0 the whole time. When joint1.di1 goes back to 0 the cycle
+# stops, joint1.do3 goes 0 and joint1.do1 is 1 again. A new 0 -> 1 of joint1.di1 starts it again.
+# Second part: joint1.do2 blinks 10 times (blink_time on / blink_time off) each time joint1.di2 becomes 1.
+#   simulate: ros2 run nextplc nextplc_sim programs/blink_cycle.yaml programs/blink_cycle.sim
+program: blink_cycle
+
+names:
+  blink_time: R10           # ms, changeable from the HMI (set_bits blink_time 200)
+retain: [blink_time]
+
+sequences:
+  - name: cycle
+    start: "RISE(joint1.di1)"
+    abort: "NOT joint1.di1"
+    steps:
+      - {name: on1,  do: [joint1.do3], next: "ON_FOR(TRUE, 2s)"}
+      - {name: off1, do: [],           next: "ON_FOR(TRUE, 3s)"}
+      - {name: on2,  do: [joint1.do3], next: "ON_FOR(TRUE, 2s)"}
+      - {name: off2, do: [],           next: "ON_FOR(TRUE, 2s)"}
+      - {name: hold, do: [joint1.do3], next: "NOT joint1.di1"}
+
+rungs:
+  # joint1.do1 is 1 whenever the cycle is not running
+  - {out: joint1.do1, when: "NOT seq.cycle.active"}
+
+  # blink_time = 500 ms the first time
+  - {move: blink_time, value: 500, when: "S.FIRST_SCAN AND blink_time == 0"}
+  # joint1.di2 0 -> 1: M20 = "blinking"; R11 counts the finished blinks; after 10 M20 goes 0
+  - {set: M20,   when: "RISE(joint1.di2)"}
+  - {count: R11, up: "FALL(joint1.do2)", reset: "NOT M20"}
+  - {reset: M20, when: "R11 >= 10"}
+  # the oscillator: M21 = on time over, M22 = off time over
+  - {out: M21, when: "M20 AND NOT M22", ton: blink_time}
+  - {out: M22, when: "M21", ton: blink_time}
+  - {out: joint1.do2, when: "M20 AND NOT M21"}

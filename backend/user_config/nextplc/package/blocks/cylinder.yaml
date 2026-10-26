@@ -1,0 +1,40 @@
+# cylinder -- a double-acting pneumatic cylinder with two end sensors.
+#
+#   request    (in)   1 = extend, 0 = retract (a level, e.g. an M bit set by the BT or a rung)
+#   extend_cmd (out)  the valve output (Q)
+#   extended   (in)   end sensor "fully extended"
+#   retracted  (in)   end sensor "fully retracted"
+#   fault      (out)  latched: the end sensor did not come within travel_time; the valve is released
+#   reset      (in)   rising edge clears the fault (optional)
+#   travel_time (time, default 2s)
+#   locals: busy (moving, no fault), in_position (the requested end sensor is 1)
+#
+#   blocks:
+#     - {use: cylinder, as: clamp, with: {request: M10, extend_cmd: gpio1.do1, extended: gpio1.di2,
+#                                         retracted: gpio1.di3, fault: M30, reset: gpio1.di8, travel_time: 2s}}
+#   then in your rungs: clamp.in_position, clamp.busy, M30 ...
+block: cylinder
+description: "Double-acting cylinder with end sensors, travel-time fault, reset"
+ports:
+  request:     {kind: in}
+  extend_cmd:  {kind: out}
+  extended:    {kind: in}
+  retracted:   {kind: in}
+  fault:       {kind: out}
+  reset:       {kind: in, optional: true}
+  travel_time: {kind: time, default: 2s}
+locals:
+  in_position: M
+  busy: M
+rungs:
+  # the end sensor that belongs to the request is 1
+  - {out: in_position, when: "(request AND extended) OR (NOT request AND retracted)"}
+  # moving: requested position not reached yet
+  - {out: busy,        when: "NOT in_position AND NOT fault"}
+  # fault: still moving after travel_time -> latched, until reset
+  - {set: fault,       when: "ON_FOR(busy, travel_time)"}
+  - {reset: fault,     when: "RISE(reset)"}
+  # the valve follows the request, except after a fault (the cylinder is released = retracts)
+  - {out: extend_cmd,  when: "request AND NOT fault"}
+alarms:
+  - {bit: fault, text: "Cylinder did not reach its end position in time", level: error, toast: true}

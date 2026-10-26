@@ -1,0 +1,35 @@
+# scenario for cell_with_blocks.yaml: two picks, then the door opens during a pick
+SUPERVISOR AUTO
+SUPERVISOR ARMED 1
+WATCH M10 M11 M13 M20 M30 M31 R0 clamp.in_position
+LINK gpio1.do1 -> gpio1.di2 AFTER 400ms          # clamp closes in 400 ms
+LINK gpio1.do1 -> gpio1.di3 AFTER 400ms INVERT
+SET gpio1.di5 1                                  # door closed
+WAIT 50ms
+EXPECT gpio1.do6 1                               # green
+PRINT "a part arrives"
+SET gpio1.di1 1
+EXPECT gpio1.do1 1 WITHIN 400ms                  # clamp valve after the 300 ms debounce
+EXPECT M11 1 WITHIN 500ms                        # robot asked after the clamp is closed
+PRINT "the BT picks and answers after 1 s"
+WAIT 1s
+PULSE M13 100ms
+EXPECT M11 0 WITHIN 20ms
+EXPECT R0 1
+SET gpio1.di1 0                                  # part gone
+EXPECT gpio1.do1 0 WITHIN 20ms
+EXPECT M30 STAYS 0 FOR 1s
+PRINT "second part"
+SET gpio1.di1 1
+EXPECT M11 1 WITHIN 800ms
+PRINT "the door is opened while the robot works"
+SET gpio1.di5 0
+EXPECT EMERGENCY WITHIN 20ms
+EXPECT S.SAFE_STATE 1
+EXPECT gpio1.do1 0                               # clamp released (safe state)
+EXPECT gpio1.do4 1 WITHIN 300ms                  # door lamp blinks (exempt)
+EXPECT gpio1.do7 1 WITHIN 600ms                  # red lamp blinks (SAFE gpio1.do7 KEEP in the program)
+SUPERVISOR RESET
+SET gpio1.di5 1
+EXPECT S.SAFE_STATE 0 WITHIN 20ms
+EXPECT gpio1.do6 1 WITHIN 20ms                   # green again

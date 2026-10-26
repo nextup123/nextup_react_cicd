@@ -1,0 +1,28 @@
+# conveyor -- run request with jam detection: while the motor runs, the part sensor must change
+# state at least every jam_time, otherwise the belt is stopped and a fault is latched.
+#
+#   run_request (in)      1 = run (level)
+#   motor (out)           the motor output
+#   part_sensor (in)      a sensor the parts pass (changes while material moves)
+#   fault (out)           latched jam fault
+#   reset (in, optional)  rising edge clears the fault
+#   jam_time (time, default 5s)
+block: conveyor
+description: "Conveyor with jam detection on the part sensor"
+ports:
+  run_request: {kind: in}
+  motor:       {kind: out}
+  part_sensor: {kind: in}
+  fault:       {kind: out}
+  reset:       {kind: in, optional: true}
+  jam_time:    {kind: time, default: 5s}
+locals:
+  no_movement: M
+rungs:
+  # the sensor did not change (no edge) -- an edge breaks the timer for one scan
+  - {out: no_movement, when: "motor AND NOT RISE(part_sensor) AND NOT FALL(part_sensor)"}
+  - {set: fault,       when: "ON_FOR(no_movement, jam_time)"}
+  - {reset: fault,     when: "RISE(reset)"}
+  - {out: motor,       when: "run_request AND NOT fault"}
+alarms:
+  - {bit: fault, text: "Conveyor jam: no material movement", level: error, toast: true}

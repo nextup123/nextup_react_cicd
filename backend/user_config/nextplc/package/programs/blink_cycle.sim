@@ -1,0 +1,22 @@
+# scenario for blink_cycle.yaml
+WAIT 20ms
+EXPECT joint1.do1 1                       # at rest
+SET joint1.di1 1
+EXPECT joint1.do3 1 WITHIN 30ms
+EXPECT joint1.do1 0 WITHIN 20ms
+EXPECT joint1.do3 0 WITHIN 2100ms         # on 2 s
+EXPECT joint1.do3 STAYS 0 FOR 2900ms      # off 3 s
+EXPECT joint1.do3 1 WITHIN 200ms
+EXPECT joint1.do3 0 WITHIN 2100ms         # on 2 s
+EXPECT joint1.do3 1 WITHIN 2100ms         # off 2 s, then hold
+EXPECT joint1.do3 STAYS 1 FOR 3s
+SET joint1.di1 0
+EXPECT joint1.do3 0 WITHIN 30ms
+EXPECT joint1.do1 1 WITHIN 30ms
+PRINT "10 blinks on joint1.do2"
+WATCH R11
+SET joint1.di2 1
+EXPECT joint1.do2 1 WITHIN 30ms
+WAIT 10s
+EXPECT R11 0                              # done: counter reset
+EXPECT joint1.do2 STAYS 0 FOR 2s          # no more blinks while joint1.di2 stays 1

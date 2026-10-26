@@ -1,0 +1,19 @@
+# door_guard -- a guard door: opening it while the robot runs triggers the robot emergency stop.
+#   door_closed (in)          the door switch (1 = closed)
+#   running (in, default S.ARMED)   when this is 1 the door must stay closed
+#   lamp (out, optional)      blinks 2 Hz while the door is open (exempt from the safe state)
+#   closed_ok (out, optional) 1 while the door is closed (for interlocks)
+#   text (not a port): the emergency text names the instance
+block: door_guard
+description: "Guard door with robot emergency stop when opened while running"
+ports:
+  door_closed: {kind: in}
+  running:     {kind: in, default: S.ARMED}
+  lamp:        {kind: out, optional: true}
+  closed_ok:   {kind: out, optional: true}
+safe_state:
+  exempt: [lamp]        # the lamp keeps blinking in the emergency it caused
+rungs:
+  - {emergency: "NOT door_closed AND running", text: "Guard door opened while the robot was running"}
+  - {out: lamp,      when: "NOT door_closed AND S.BLINK_2HZ"}
+  - {out: closed_ok, when: "door_closed"}

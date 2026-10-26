@@ -1,0 +1,66 @@
+{
+  "do_chuckcampleop10_do__1_1": {
+    "x": 20,
+    "y": 0
+  },
+  "do_decampchuckop10_do__1_3": {
+    "x": 20,
+    "y": 40
+  },
+  "do_chuckcampleop20_do__2_1": {
+    "x": 320,
+    "y": 0
+  },
+  "do_decampleop20_do__2_3": {
+    "x": 320,
+    "y": 30
+  },
+  "do_airblastop10_do__3_1": {
+    "x": 640,
+    "y": 50
+  },
+  "do_airblastop20_do__3_3": {
+    "x": 640,
+    "y": 0
+  },
+  "do_dooropencloseop10_do__4_1": {
+    "x": 20,
+    "y": 70
+  },
+  "do_dooropencloseop20_do__4_3": {
+    "x": 310,
+    "y": 70
+  },
+  "do_gripperidpick_do__5_1": {
+    "x": 20,
+    "y": 110
+  },
+  "do_gripperodplace_do__5_2": {
+    "x": 250,
+    "y": 110
+  },
+  "do_cncemercny_do__5_3": {
+    "x": 630,
+    "y": 150
+  },
+  "do_pickconverystartstop_do__6_1": {
+    "x": 560,
+    "y": 120
+  },
+  "do_placeconverystartstop_do__6_2": {
+    "x": 560,
+    "y": 110
+  },
+  "do_flip180gripper_do__2_2": {
+    "x": 20,
+    "y": 150
+  },
+  "do_fingergripper_do__3_2": {
+    "x": 250,
+    "y": 150
+  },
+  "do_pistongripper_do__4_2": {
+    "x": 480,
+    "y": 150
+  }
+}

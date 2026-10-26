@@ -1,0 +1,35 @@
+{
+  "appId": "nextup_react",
+  "version": "1.0.0",
+  "title": "Drive tools and software update in the console",
+  "releasedAt": "2026-10-26",
+  "channel": "stable",
+  "summary": "The EtherCAT config tool is part of the console now: drive recipes, drive settings and manual read/write in Settings, drive faults in Diagnostics, and one software update for everything.",
+  "changes": [
+    {
+      "type": "feature",
+      "area": "Settings",
+      "title": "Driver Settings",
+      "description": "Recipes, Drive settings and Manual read/write for the servo drives, under Settings > Driver Settings."
+    },
+    {
+      "type": "feature",
+      "area": "Diagnostics",
+      "title": "Drive faults",
+      "description": "The fault history of each drive, with causes and fixes, under Diagnostics > Robot records > Drive faults."
+    },
+    {
+      "type": "feature",
+      "area": "Settings",
+      "title": "Software update for the whole console",
+      "description": "Settings > Software Update installs a new version of the whole console, keeps the previous one to go back to, and goes back by itself when a new version does not start."
+    }
+  ],
+  "upgradeNotes": "",
+  "requiresRestart": true,
+  "mandatory": false,
+  "compatibility": {
+    "node": ">=18",
+    "ros": "humble"
+  }
+}

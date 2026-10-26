@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<root BTCPP_format="4">
+  <BehaviorTree ID="initPose">
+    <Fallback name="Fallback_initPose">
+      <Sequence name="Sequence1_startPoint">
+        <MsgLogger name="MsgLogger_check_init" msg_log="checking if robot is at Init Pose"/>
+        <IsAtPose name="IsAtPose_init" target_name="p1"/>
+      </Sequence>
+      <Sequence name="Sequence2_home">
+        <IsAtPose name="IsAtPose_home" target_name="home"/>
+        <PlanAndExecute name="PlanAndExecute_to_init" pose_goal="p1" cart="false" speed="{fast}" acceleration="1.0"/>
+      </Sequence>
+      <Sequence name="Sequence3_via_home">
+        <MsgLogger name="MsgLogger_lost" msg_log="robot is neither at home nor at init pose: going home first"/>
+        <PilzPointsPlanner name="to_home_first" pose_goal="home" planner_id="PTP" speed="{slow}" acceleration="0.5"/>
+        <PlanAndExecute name="PlanAndExecute_home_to_init" pose_goal="p1" cart="false" speed="{fast}" acceleration="1.0"/>
+      </Sequence>
+    </Fallback>
+  </BehaviorTree>
+
+  <BehaviorTree ID="gripper_open">
+    <Sequence name="gripper_open_seq">
+      <DoControl name="gripper_open_do" driver_id="1" do_id="1" expected_action="false" push_wait="250"/>
+      <Sleep name="gripper_open_settle" msec="300"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="gripper_close">
+    <Sequence name="gripper_close_seq">
+      <DoControl name="gripper_close_do" driver_id="1" do_id="1" expected_action="true" push_wait="250"/>
+      <RetryUntilSuccessful name="retry_part_check" num_attempts="2">
+        <DIControl name="part_in_gripper" driver_id="1" di_id="2" expected="true"/>
+      </RetryUntilSuccessful>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="pick_cnc1">
+    <Sequence name="pick">
+      <SubTreePlus ID="gripper_open" __autoremap="true"/>
+      <PilzPointsPlanner name="to_prepick" pose_goal="PrepickpointCNC1" planner_id="PTP" speed="{fast}" acceleration="2.0"/>
+      <PilzPointsPlanner name="to_pick" pose_goal="PickpointCNC1" planner_id="LIN" speed="{slow}" acceleration="0.5"/>
+      <SubTreePlus ID="gripper_close" __autoremap="true"/>
+      <PilzPointsPlanner name="after_pick" pose_goal="PrepickpointCNC1" planner_id="LIN" speed="{slow}" acceleration="0.5"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="place_table">
+    <Sequence name="place">
+      <PilzPointsPlanner name="to_place" pose_goal="PlacepointTable" planner_id="PTP" speed="{fast}" acceleration="2.0"/>
+      <SubTreePlus ID="gripper_open" __autoremap="true"/>
+      <MsgPopup name="placed_popup" msg="part placed" type="success" timeout="2"/>
+      <PilzPointsPlanner name="back_to_init" pose_goal="p1" planner_id="PTP" speed="{fast}" acceleration="2.0"/>
+    </Sequence>
+  </BehaviorTree>
+
+  <BehaviorTree ID="recover_to_safe">
+    <Sequence name="recover">
+      <PopupMsg name="tell_operator" msg="Cycle failed - robot returns home" type="failure" timeout="10"/>
+      <PilzPointsPlanner name="recover_home" pose_goal="home" planner_id="PTP" speed="{slow}" acceleration="0.5"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

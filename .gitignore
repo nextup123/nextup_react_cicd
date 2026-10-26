@@ -1,0 +1,14 @@
+node_modules/
+*.tmp
+*.zip
+.vscode/
+# Built on each PC (npm start builds them on the first start; an update builds dist-next)
+frontend/dist/
+frontend/dist-next/
+frontend/dist-old-*/
+# Written by the console while it runs
+backend/user_config/ui_prefs.json
+backend/user_config/.ros_bindings_hash
+backend/user_config/sim/
+backend/my_bt_log.fbl
+backend/my_bt_log.json

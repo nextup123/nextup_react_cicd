@@ -1,0 +1,29 @@
+# tower_lamp -- green / yellow / red / buzzer from the robot state and a fault bit.
+#
+#   fault (in)              any fault of the cell (latched bit)
+#   warning (in, optional)  yellow
+#   green, yellow, red (out)   lamps; buzzer (out, optional)
+#   ack (in, optional)      acknowledge: silences the buzzer
+#   buzzer_time (time, default 3s)   the buzzer sounds this long for a new fault (or until ack)
+#   green = AUTO and no fault; yellow = warning or not in AUTO (JOG / SAFEAUTO); red = fault, blinking 1 Hz;
+#   buzzer = new fault, for buzzer_time or until ack.
+block: tower_lamp
+description: "Green / yellow / red lamp tower with buzzer"
+ports:
+  fault:       {kind: in}
+  warning:     {kind: in, optional: true}
+  green:       {kind: out}
+  yellow:      {kind: out}
+  red:         {kind: out}
+  buzzer:      {kind: out, optional: true}
+  ack:         {kind: in, optional: true}
+  buzzer_time: {kind: time, default: 3s}
+locals:
+  acked: M
+rungs:
+  - {out: green,  when: "S.AUTO AND NOT fault AND NOT S.EMERGENCY"}
+  - {out: yellow, when: "warning OR (NOT S.AUTO AND NOT S.EMERGENCY)"}
+  - {out: red,    when: "(fault OR S.EMERGENCY) AND S.BLINK_1HZ"}
+  - {set: acked,   when: "RISE(ack)"}
+  - {reset: acked, when: "NOT fault"}
+  - {out: buzzer, when: "fault AND NOT ON_FOR(fault, buzzer_time) AND NOT acked"}

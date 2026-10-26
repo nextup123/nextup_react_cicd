@@ -1,0 +1,51 @@
+/* ecat-extra.css -- the drive tools inside NextUp: the Driver Settings shell (tabs + status strip),
+   Software Update, the Drive faults tab in Diagnostics. Loaded after the generated ecat.css.
+   Theme tokens only. */
+
+/* NextUp's primitives share names with the tool's (.card, .btn, .input, .badge, .overlay):
+   keep the tool's layout where NextUp's global rules would add to it */
+.ecat .card { display: block; }
+.ecat .input, .ecat .select { box-shadow: none; }
+.ecat .badge { height: auto; border-radius: 999px; }
+.ecat .table th { position: static; }
+/* NextUp .list-item is a centred row with a bottom rule: the tool's is a stacked card */
+.ecat .list-item { align-items: stretch; min-height: 0; border-bottom: 1px solid transparent; }
+.ecat .list-item.active { border-color: var(--accent-line, var(--border-strong, var(--border))); }
+/* the tool's dialogs (portal on <body>) above floating windows, under NextUp's confirm (1000) */
+.ecat .overlay { z-index: 990; }
+.ecat-layer { position: relative; }
+
+/* ---- Driver Settings shell ---- */
+.ecat-shell { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ecat-toolbar { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; border-bottom: 1px solid var(--border); }
+.ecat-tabs { border-bottom: 0; flex: 1 1 auto; flex-wrap: wrap; }
+.ecat-sub { margin: 0; font-size: var(--fs-sm); }
+.ecat-body { min-width: 0; }
+.ecat-body > .page { max-width: none; }
+/* Recipes: list and detail side by side, each scrolling on its own */
+.ecat-body.is-flush {
+  display: flex; height: calc(100vh - 250px); min-height: 520px; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-xs);
+}
+.ecat-body.is-flush > * { flex: 1 1 auto; min-width: 0; }
+
+/* ---- status strip (the separate tool's header) ---- */
+.ecat-status-wrap { padding-bottom: 7px; margin-left: auto; }
+.ecat .ecat-status { display: flex; align-items: center; flex-shrink: 0; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface-2); padding: 2px; }
+.ecat .ecat-status > * + * { border-left: 1px solid var(--border); }
+.ecat .status-chip.idle { color: var(--text-3); }
+
+/* ---- Software Update (Settings) ---- */
+.ecat-update > .page { margin: 0; }
+
+/* ---- Drive faults (Diagnostics > Robot records) ---- */
+.ecat-faults { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 12px 0 0; }
+.ecat-faults-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.ecat-faults-bar .ecat-status-wrap { padding-bottom: 0; }
+
+/* ---- Recipes list: drag to change the order ---- */
+.ecat .list-item.can-drag { cursor: grab; touch-action: pan-y; padding-left: 24px; }
+.ecat .list-item.is-dragging { cursor: grabbing; background: var(--surface); box-shadow: var(--shadow-lg, 0 6px 18px rgba(0,0,0,.18)); border-color: var(--border); }
+.ecat .list-item-grip { position: absolute; left: 5px; top: 50%; transform: translateY(-50%); color: var(--text-3); opacity: .45; display: flex; }
+.ecat .list-item:hover .list-item-grip, .ecat .list-item:focus-visible .list-item-grip { opacity: 1; }
+.ecat .list-hint { padding: 8px 12px 4px; text-align: center; }

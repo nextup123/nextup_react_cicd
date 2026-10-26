@@ -1,0 +1,16 @@
+# blinker -- an output that blinks while enable is 1 (starts with ON).
+#   enable (in), output (out), on_time / off_time (time, default 500ms; or a register holding ms)
+block: blinker
+description: "Blink an output with separate on and off times"
+ports:
+  enable:   {kind: in}
+  output:   {kind: out}
+  on_time:  {kind: time, default: 500ms}
+  off_time: {kind: time, default: 500ms}
+locals:
+  a: M
+  b: M
+rungs:
+  - {out: a,      when: "enable AND NOT b", ton: on_time}
+  - {out: b,      when: "a", ton: off_time}
+  - {out: output, when: "enable AND NOT a"}

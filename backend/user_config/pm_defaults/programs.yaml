@@ -1,0 +1,34 @@
+# Motion programs (nextup_motion_server ~/run_program): named lists of motion steps.
+# Motion only -- the behaviour tree does all logic and I/O (RunProgram program="simple_move").
+# Units: mm, deg, s, speed m/s, acceleration m/s2. A step without a value uses the program's value.
+# Edit them on the Motion Programs page; comments next to steps are kept.
+#
+# Step keys (only write what you need):
+#   motion            PTP | LIN | CIRC | CIRCLE | SPLINE | SPIRAL          (default PTP)
+#   point             target point from points.yaml
+#   offset            {x, y, z, rx, ry, rz} in mm / deg
+#                       with point    -> go to the point shifted by the offset ("above pick")
+#                       without point -> move relative to where the previous step ended ("retract 50 up")
+#   via               CIRC / CIRCLE: a point on the arc (3-point arc / 3-point circle)
+#   center            CIRC: arc around this centre; CIRCLE / SPIRAL: the centre (with radius_mm)
+#   radius_mm         CIRCLE / SPIRAL: radius -- 1-point circle = center + radius_mm
+#   turns, pitch_mm   SPIRAL: number of turns; pitch_mm > 0 = helix (rises per turn)
+#   angle_deg         CIRC: sweep instead of stopping at point; CIRCLE: default 360 (380 = overlap)
+#   points            SPLINE: list of points for one smooth curve
+#   weave             LIN / CIRC / CIRCLE: {shape: sine|triangle|trapezoid|..., amplitude_mm, wavelength_mm}
+#   speed_mps, acceleration_mps2, blend_mm, dwell_s
+#
+# Program keys: name, description, repeat (0 = until stopped), speed_mps, acceleration_mps2, tool, frame
+
+programs:
+
+  # ---- STARTER: from home 50 mm straight down and back up (needs the point "home" in points.yaml) ----
+  - name: simple_move
+    description: "starter program: home, 50 mm down and back (edit or delete it)"
+    repeat: 1
+    speed_mps: 0.25
+    acceleration_mps2: 1.0
+    steps:
+      - {point: home, motion: PTP}
+      - {offset: {z: -50}, motion: LIN, speed_mps: 0.1}    # straight down, relative
+      - {point: home, motion: LIN, speed_mps: 0.1}         # straight back up

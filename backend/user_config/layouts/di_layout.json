@@ -1,0 +1,62 @@
+{
+  "di_chuckcampleop10_1_1": {
+    "x": 10,
+    "y": 10
+  },
+  "di_decamplechuckop10_di__1_2": {
+    "x": 0,
+    "y": 60
+  },
+  "di_cyclecompleop10_di__1_3": {
+    "x": 10,
+    "y": 110
+  },
+  "di_chuckcampleop20_di__2_1": {
+    "x": 210,
+    "y": 10
+  },
+  "di_decamplechuckop20_di__2_2": {
+    "x": 240,
+    "y": 60
+  },
+  "di_cyclecompleop20_di__2_3": {
+    "x": 240,
+    "y": 110
+  },
+  "di_sensor1converypick_di__5_1": {
+    "x": 630,
+    "y": 150
+  },
+  "di_sensor2converypick_di__5_2": {
+    "x": 630,
+    "y": 150
+  },
+  "di_sensordropconvery_di__5_3": {
+    "x": 470,
+    "y": 110
+  },
+  "di_sensor3converypick_di__6_1": {
+    "x": 630,
+    "y": 150
+  },
+  "di_sensor4converypick_di__6_2": {
+    "x": 630,
+    "y": 150
+  },
+  "di_cncgateopenop10_di__3_1": {
+    "x": 0,
+    "y": 150
+  },
+  "di_cncgatecloseop10_di__3_2": {
+    "x": 230,
+    "y": 150
+  },
+  "di_cncgateopenop20_di__4_1": {
+    "x": 440,
+    "y": 10
+  },
+  "di_cncgatecloseop20_di__4_2": {
+    "x": 490,
+    "y": 60
+  }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+  Demo tree for the simulated runner (npm run sim). Same shape as the robot's
+  control_data/main_tree.xml: the main tree includes the station subtrees from
+  stations.xml. Used only when /home/nextup/.../control_data/main_tree.xml does not exist.
+-->
+<root main_tree_to_execute="MainTree" BTCPP_format="4">
+  <include path="stations.xml"/>
+
+  <BehaviorTree ID="MainTree">
+    <Start name="main_control_start">
+      <Sequence name="cycle">
+        <PreflightCheck name="preflight" required_points="home,p1,PrepickpointCNC1,PickpointCNC1,PlacepointTable"/>
+        <SetVar name="fast_speed" key="fast" value="1.0"/>
+        <SetVar name="slow_speed" key="slow" value="0.1"/>
+        <SubTreePlus ID="initPose" __autoremap="true"/>
+        <Recovery name="work_or_recover">
+          <Sequence name="work">
+            <SubTreePlus ID="pick_cnc1" __autoremap="true"/>
+            <SubTreePlus ID="place_table" __autoremap="true"/>
+          </Sequence>
+          <SubTreePlus ID="recover_to_safe" __autoremap="true"/>
+        </Recovery>
+        <MsgLogger name="cycle_done_log" msg_log="cycle complete"/>
+      </Sequence>
+    </Start>
+  </BehaviorTree>
+</root>

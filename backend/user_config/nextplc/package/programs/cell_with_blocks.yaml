@@ -1,0 +1,42 @@
+# cell_with_blocks.yaml -- a pick cell built from library blocks (doc/BLOCKS.md).
+#   check:    ros2 run nextplc nextplc_check programs/cell_with_blocks.yaml
+#   simulate: ros2 run nextplc nextplc_sim programs/cell_with_blocks.yaml programs/cell_with_blocks.sim
+program: cell_with_blocks
+
+names:
+  part_present: gpio1.di1
+  start_button: gpio1.di7
+  reset_button: gpio1.di8
+  any_fault:    M33
+  batch_size:   R5          # parts per batch, changeable from the HMI (set_bits batch_size 20)
+
+retain: [batch_size]
+
+safe_state:
+  default: 0
+  exempt: [gpio1.do7]       # the red lamp keeps blinking in an emergency (the door lamp is exempt by its block)
+
+blocks:
+  # the clamp: valve gpio1.do1, sensors gpio1.di2 (closed) / gpio1.di3 (open), request M10
+  - {use: cylinder, as: clamp, with: {request: M10, extend_cmd: gpio1.do1, extended: gpio1.di2, retracted: gpio1.di3,
+                                      fault: M30, reset: reset_button, travel_time: 2s}}
+  # the guard door gpio1.di5: opening it while the robot is armed = robot emergency stop
+  - {use: door_guard, as: door, with: {door_closed: gpio1.di5, lamp: gpio1.do4}}
+  # robot handshake: M11 = "pick now" (BT: WaitBit M11), M13 = "done" (BT: PulseBit M13)
+  - {use: bt_handshake, as: pick, with: {start: M20, request: M11, done: M13, fault: M31, reset: reset_button, timeout: 30s}}
+  # parts counted on every finished pick, batch done -> M14
+  - {use: part_counter, as: parts, with: {count_input: M13, reset: start_button, count: R0, preset: batch_size, done: M14}}
+  # lamps: green gpio1.do6, yellow gpio1.do5, red gpio1.do7, buzzer gpio1.do8, ack = reset button
+  - {use: tower_lamp, as: lamps, with: {fault: any_fault, warning: M14, green: gpio1.do6, yellow: gpio1.do5, red: gpio1.do7,
+                                        buzzer: gpio1.do8, ack: reset_button, buzzer_time: 3s}}
+
+rungs:
+  # batch_size = 5 the first time (a value changed on the HMI is retained and kept)
+  - {move: batch_size, value: 5, when: "S.FIRST_SCAN AND batch_size == 0"}
+  # the cell logic itself: three rungs
+  - {out: any_fault, when: "M30 OR M31"}
+  - {out: M10, when: "ON_FOR(part_present, 300ms) AND S.AUTO AND NOT any_fault AND NOT M14"}   # clamp while a part is there
+  - {out: M20, when: "M10 AND gpio1.di2"}                                                      # clamp requested and really closed -> ask the robot
+
+alarms:
+  - {bit: M14, text: "Batch finished - press start for the next batch", level: info, toast: true}

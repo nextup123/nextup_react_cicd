@@ -1,0 +1,61 @@
+# Release check of the NextUp console. Robot PCs only install a version once this has passed
+# for its tag (Settings > Software Update).
+#
+#   Every push and pull request: build the screens, run the tests.
+#   A version tag (v1.1.0): the same checks, plus the tag must match package.json and
+#   release-notes.json. If all pass, the tag is marked checked with a second tag,
+#   verified/v1.1.0, on the same commit; the Update page offers only marked versions.
+#   Then release-notes.json is sent to the release server (repository secret HUB_URL).
+#
+# This file belongs at the top of the repository. If the console sits in a sub-folder of a
+# bigger repository, move this file to that repository's .github/workflows and add
+# `working-directory: <folder>` under `defaults.run`.
+name: Release check
+
+on:
+  push:
+    branches: ['**']
+    tags: ['v*']
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            backend/package-lock.json
+            frontend/package-lock.json
+      - name: Install (without building the robot connection library, which needs ROS 2)
+        run: npm --prefix backend ci --ignore-scripts && npm --prefix frontend ci
+      - name: Build the screens
+        run: npm run build
+      - name: Tests (simulated robot and drives)
+        run: npm test
+
+  mark-checked:
+    if: startsWith(github.ref, 'refs/tags/v') && !startsWith(github.ref, 'refs/tags/verified/')
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      HUB_URL: ${{ secrets.HUB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Mark the tag as checked (verified/${{ github.ref_name }})
+        run: |
+          git tag -f "verified/${GITHUB_REF_NAME}" "${GITHUB_SHA}"
+          git push -f origin "refs/tags/verified/${GITHUB_REF_NAME}"
+      - name: Publish release notes to the release server
+        if: env.HUB_URL != ''
+        # A sleeping or unreachable server must not undo the check; the notes are also in the repository.
+        continue-on-error: true
+        run: node scripts/publish-release.js

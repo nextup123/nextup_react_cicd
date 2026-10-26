@@ -1,0 +1,8 @@
+program: first_test
+
+rungs:
+  - {out: joint1.do3,       when: "(joint1.di1) OR (joint1.di3)"}
+  - {out: joint2.do1,       when: "joint1.di3", ton: 1s}
+  - {out: joint2.do3,       when: "S.AUTO"}
+  - {set:   joint3.do1,     when: "joint2.di2"}
+  - {reset: joint3.do1,     when: "joint1.di1"}

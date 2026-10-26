@@ -1,0 +1,54 @@
+# SV660N (Inovance) error code table for nextup_drive_state_broadcaster.
+# Keys are the CiA402 error code 0x603F, which the EtherCAT slave config maps to the `lasterror`
+# state interface (uint16). Source: SV660N Series Servo Drive Advanced User Guide, chapter 10.2
+# "Communication Faults and Warning Codes", pages 426-429.
+#
+# One 0x603F code can stand for several Inovance faults. Each entry lists every Exxx.y it can mean;
+# the keypad shows the exact Exxx.y, and SDO object 0x203F holds it as well (high 16 bits = internal
+# code, low 16 bits = external code, e.g. 0x07330733 = E733.0).
+# Fault levels: No.1 and No.2 faults need a fault reset (No.1 non-resettable ones need a power cycle);
+# No.3 warnings clear by themselves when the cause is gone.
+# Reload without restart: ros2 service call /nextup_drive_state_broadcaster/reload_code_table std_srvs/srv/Trigger
+
+default:
+  "0x0000": "No error"
+  "0x0121": "Invalid S-ON (warning): E121 Invalid S-ON command (warning)"
+  "0x0140": "Encryption chip: E140 [0 Encryption chip check error; 1 Encryption chip check failure] (fault, reset: NO - power cycle)"
+  "0x0150": "STO safe torque off: E150 [0 STO signal input protection activated (safety circuit open); 1 STO signal input error; 2 Abnormal voltage detected; 3 STO upstream optocoupler detection failure; 4 PWM buffer detection failure] (fault, reset: yes)"
+  "0x0208": "Internal timing/sampling fault: E208 [0 MCU position reference updated frequently; 2 Encoder communication timeout; 3 Current sampling fault; 4 FPGA current loop operation timeout] (fault, reset: yes)"
+  "0x0234": "Runaway protection: E234 Runaway protection (fault, reset: NO - power cycle)"
+  "0x0430": "Control circuit undervoltage: E430 Control circuit undervoltage (fault, reset: yes)"
+  "0x0600": "Inertia auto-tuning (warning): E600 Inertia auto-tuning failure (warning)"
+  "0x0601": "Homing (warning): E601 [0 Homing timeout; 1 Home switch error] (warning)"
+  "0x0602": "Angle auto-tuning: E602 [0 Angle auto-tuning error; 2 Wrong UVW phase sequence detected during angle auto-tuning] (fault, reset: yes)"
+  "0x0661": "Encoder battery failure: E731 Encoder battery failure (fault, reset: yes)"
+  "0x0900": "Emergency stop input (warning): E900 Emergency stop (warning)"
+  "0x0902": "Invalid DO setting (warning): E902 Invalid DO setting (warning)"
+  "0x0908": "Model identification (warning): E908 Model identification check byte invalid (warning)"
+  "0x0A41": "Torque ripple compensation (warning): EA41 Torque ripple compensation failure (warning)"
+  "0x0E12": "EtherCAT external device: EE12 EtherCAT external device error (fault, reset: NO - power cycle)"
+  "0x0E15": "EtherCAT sync cycle errors: EE15 Number of synchronization cycle errors too large (fault, reset: yes)"
+  "0x0FFF": "EtherCAT communication: EE08 [0 SYNC signal loss; 1 Network status switchover error; 2 IRQ loss; 3 LAN cable connected improperly; 4 Data frame loss protection error; 5 Data frame transfer error; 6 Data update timeout] (fault, reset: yes)"
+  "0x2312": "Overcurrent: E201 [0 Phase-P overcurrent; 1 Phase-U overcurrent; 2 Phase-V overcurrent; 4 Phase-N overcurrent] (fault, reset: NO - power cycle)"
+  "0x2330": "Output short circuit: E210 Output short-circuited to ground (fault, reset: NO - power cycle)"
+  "0x3130": "Mains phase loss: E420 Phase loss fault (fault, reset: yes)"
+  "0x3210": "DC bus overvoltage: E400 Main circuit overvoltage (fault, reset: yes) | E920 Regenerative resistor overload (warning)"
+  "0x3220": "DC bus undervoltage: E410 Main circuit undervoltage (fault, reset: yes)"
+  "0x3230": "Overload: E620 Motor overload (fault, reset: yes) | E909 Motor overload warning (warning) | E924 Braking transistor over-temperature (warning)"
+  "0x4210": "Over-temperature: E640 [0 IGBT over-temperature; 1 Flywheel diode over-temperature] (fault, reset: yes) | E650 Heatsink over-temperature (fault, reset: yes) | E660 Air-cooled motor over-temperature (fault, reset: yes) | E661 Auto-tuned gains too low (fault, reset: yes) | E760 Encoder over-temperature (fault, reset: yes)"
+  "0x5443": "Forward overtravel (warning): E950 Forward overtravel warning (warning)"
+  "0x5444": "Reverse overtravel (warning): E952 Reverse overtravel warning (warning)"
+  "0x5530": "EEPROM / parameter storage: E108 [0 Parameter write error; 1 Parameter read error; 2 Invalid check on data written in EEPROM; 3 Invalid check on data read in EEPROM] (fault, reset: yes) | EE11 [0 ESI check error; 1 EEPROM read failure; 2 EEPROM update failure] (fault, reset: yes)"
+  "0x6320": "Parameter or reference error: E101 [0 System parameter error; 1 2000h/2001h parameter error] (fault, reset: NO - power cycle) | E122 [0 Multi-turn absolute encoder setting error; 1 Different DIs assigned with the same function; 3 Upper limit invalid] (fault, reset: yes) | EB01 [1 Position reference increment too large for once; 2 Position reference increment too large continuously; 3 Reference overflow; 4 Target position beyond upper/lower limit] (fault, reset: yes) | EE09 [0 Software position limit setting error; 1 Home setting error; 2 Gear ratio beyond the limit; 3 No synchronization signal; 5 PDO mapping beyond the limit] (fault, reset: yes) | EE13 Synchronization cycle setting error (fault, reset: yes) | E601 Homing mode setting error (warning) | E902 Invalid DI setting (warning) | E922 Resistance of external regenerative resistor too small (warning) | E941 Parameter modifications not activated (warning)"
+  "0x7121": "Motor stall: E630 Motor stall (fault, reset: yes)"
+  "0x7122": "Motor/drive/encoder model mismatch: E120 [0 Unknown encoder type; 1 Unknown motor model; 2 Unknown drive model; 5 Motor current and drive current mismatch; 6 FPGA and motor model mismatch] (fault, reset: NO - power cycle)"
+  "0x7305": "Encoder: E136 [0 Encoder parameter error; 1 Encoder communication error] (fault, reset: NO - power cycle) | E733 Encoder multi-turn counting error (fault, reset: yes) | E735 Encoder multi-turn counting overflow (fault, reset: yes) | E740 [2 Absolute encoder error; 3 Absolute encoder single-turn calculation error; 6 Encoder write error] (fault, reset: NO - power cycle) | EA33 Encoder read/write check error (fault, reset: NO - power cycle) | E730 Encoder battery warning (warning)"
+  "0x7500": "Internal communication / firmware: E102 [0 FPGA communication initialization error; 8 Software version mismatch] (fault, reset: NO - power cycle) | E104 [1 MCU operation timeout; 2 Current loop operation timeout; 4 MCU reference update timeout] (fault, reset: NO - power cycle)"
+  "0x7600": "Parameter saved too often (warning): E942 Parameter saved frequently (warning)"
+  "0x8400": "Overspeed: E500 [0 Motor overspeed; 1 Speed feedback overflow] (fault, reset: yes) | E605 Speed upon S-ON too high (fault, reset: yes)"
+  "0x8611": "Following error: EB00 [0 Position deviation too large; 1 Position deviation overflow] (fault, reset: yes)"
+  "0xFF00": "User-defined error (drive reports 0xFF00 for faults without a CiA402 code, e.g. E500.2 FPGA position feedback pulse overspeed, E755.0 Nikon encoder communication failure, E765.0 Nikon encoder beyond the limit): read the keypad or 0x203F"
+
+# Per-device overrides (optional). A device section wins over `default` for that device only, e.g.:
+# joint6:
+#   "0x7305": "joint6 encoder: check the cable in the wrist harness first"
