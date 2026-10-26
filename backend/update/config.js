@@ -41,7 +41,7 @@ module.exports = {
 
   // Release server (release_hub): problem reports and update records. The app id names this
   // console there.
-  APP_ID: process.env.UPDATE_APP_ID || 'nextup_react',
+  APP_ID: process.env.UPDATE_APP_ID || 'main_app',
   APP_VERSION: readVersion(),
 
   // `npm start` (update/launcher.js) starts the server again when it exits with this code.

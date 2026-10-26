@@ -40,7 +40,7 @@ const body = {
   publishedBy: process.env.GITHUB_ACTOR || process.env.USER || 'release script',
 };
 
-fetch(`${HUB_URL.replace(/\/+$/, '')}/api/v1/apps/${notes.appId || 'nextup_react'}/releases/${pkg.version}`, {
+fetch(`${HUB_URL.replace(/\/+$/, '')}/api/v1/apps/${notes.appId || 'main_app'}/releases/${pkg.version}`, {
   method: 'PUT',
   headers: { 'Content-Type': 'application/json', 'X-User-Name': body.publishedBy },
   body: JSON.stringify(body),
