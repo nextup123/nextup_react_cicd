@@ -33,7 +33,7 @@ const CATEGORIES = [
 ];
 const SEVERITIES = [['critical', 'Stops work'], ['high', 'Serious'], ['medium', 'Annoying'], ['low', 'Small']];
 const FREQUENCIES = [['always', 'Every time'], ['sometimes', 'Sometimes'], ['once', 'Once']];
-const AREAS = ['Projects', 'Teach Points', 'Motion Programs', 'IO Control', 'Robot Program', 'NextPLC', 'NexRoot Runner', 'Client Control', 'Diagnostics', 'Drive faults',
+const AREAS = ['Projects', 'Teach Points', 'Motion Programs', 'IO Control', 'Robot Program', 'NextPLC', 'NexRoot Runner', 'Client Control', 'Diagnostics', 'Driver BlackBox',
   'Settings', 'Recipes', 'Drive settings', 'Manual read/write', 'Software update', 'Other'];
 
 // What the maintainer's status means to the person who reported it.

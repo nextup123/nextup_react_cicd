@@ -1,6 +1,6 @@
 {
   "name": "nextup-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "NextUp robot console: React frontend, Node backend, NextPLC and the drive tools (EtherCAT config) in one version",
   "scripts": {

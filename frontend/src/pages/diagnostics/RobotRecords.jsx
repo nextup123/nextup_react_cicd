@@ -27,7 +27,7 @@ const VIEWS = [
   { value: "counters", label: "Fault counters", icon: Gauge },
   { value: "motions", label: "Motion log", icon: FileClock },
   { value: "blackbox", label: "Black box", icon: HardDriveDownload },
-  { value: "drivefaults", label: "Drive faults", icon: AlertOctagon },
+  { value: "drivefaults", label: "Driver BlackBox", icon: AlertOctagon },
 ];
 const VIEW_KEY = "nextup.diagnostics.records";
 const MAX_OPTIONS = [100, 300, 1000].map((n) => ({ value: String(n), label: `Last ${n}` }));
